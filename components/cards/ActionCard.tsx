@@ -12,7 +12,7 @@ export async function ActionCard({ item }: { item: ActionItem }) {
       <div className="relative aspect-[375/274] w-full overflow-hidden rounded-media bg-ink/5">
         <Image src={item.image} alt={item.title} fill className="object-cover" />
       </div>
-      <h3 className="mt-5 text-display font-bold leading-[1.05]">{item.title}</h3>
+      <h3 className="mt-5 text-[clamp(2rem,5vw,56px)] font-bold leading-[1.05]">{item.title}</h3>
       <div className="mt-auto pt-6">
         <WatchNowButton video={item.video} label={common.watchNow} variant="dark" />
       </div>

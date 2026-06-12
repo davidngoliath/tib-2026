@@ -16,16 +16,16 @@ const CARD_BG: Record<(typeof features)[number]["color"], string> = {
 export async function FeatureRows() {
   const { braveCampAbout } = await getCopy();
   return (
-    <section className="py-[284px]">
-      <div className="mx-auto w-full max-w-[1440px] px-[60px]">
-        <div className="space-y-[284px]">
+    <section className="py-24 lg:py-[284px]">
+      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-[60px]">
+        <div className="space-y-16 lg:space-y-[284px]">
           {features.map((feature) => {
             const text = braveCampAbout.features[feature.id];
             const card = (
               <div
-                className={`flex h-[463px] flex-col justify-center rounded-card px-[74px] ${CARD_BG[feature.color]}`}
+                className={`flex flex-col justify-center rounded-card px-7 py-10 sm:px-12 lg:h-[463px] lg:px-[74px] lg:py-0 ${CARD_BG[feature.color]}`}
               >
-                <h2 className="whitespace-pre-line text-[56px] font-bold leading-[normal] tracking-[-1.68px]">
+                <h2 className="whitespace-pre-line text-[clamp(2rem,5vw,56px)] font-bold leading-[1.1] tracking-[-1.68px] lg:leading-[normal]">
                   {text.title}
                 </h2>
                 <div className="mt-[19px] space-y-[22px] text-[18px] font-medium leading-[normal] tracking-[-0.54px]">
@@ -36,18 +36,18 @@ export async function FeatureRows() {
               </div>
             );
             const photo = (
-              <div className="relative h-[463px] overflow-hidden rounded-card bg-ink/5">
+              <div className="relative aspect-[650/463] overflow-hidden rounded-card bg-ink/5 lg:aspect-auto lg:h-[463px]">
                 <Image
                   src={feature.image}
                   alt=""
                   fill
                   className="object-cover"
-                  sizes="650px"
+                  sizes="(min-width:1024px) 650px, 100vw"
                 />
               </div>
             );
             return (
-              <div key={feature.id} className="grid grid-cols-2 gap-5">
+              <div key={feature.id} className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                 {feature.imageSide === "left" ? (
                   <>
                     {photo}

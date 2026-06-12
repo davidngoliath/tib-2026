@@ -1,7 +1,8 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 
 // Tablet/mobile nav (<1024px). Collapses the desktop nav into two floating
 // capsules — [logo + hamburger] on the left, [Donate + EN/ES] always-visible on
@@ -13,12 +14,10 @@ const CAPSULE =
 type NavLink = { label: string; href: string };
 
 export function MobileNav({
-  logo,
   links,
   registerLabel,
   rightControls,
 }: {
-  logo: React.ReactNode;
   links: NavLink[];
   registerLabel: string;
   rightControls: React.ReactNode;
@@ -26,6 +25,14 @@ export function MobileNav({
   const [open, setOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
+
+  // Close the menu when the route actually changes. Closing inside the link's
+  // onClick races the navigation (the state update can cancel it), so a tap
+  // would intermittently just dismiss the menu without navigating.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   // Escape to close + body scroll lock + focus trap while the overlay is open.
   useEffect(() => {
@@ -72,26 +79,29 @@ export function MobileNav({
   }, [open]);
 
   return (
-    <div className="flex w-full items-center lg:hidden">
-      {/* Left capsule: logo + hamburger */}
-      <div className={CAPSULE}>
-        {logo}
-        <button
-          ref={openerRef}
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label="Open menu"
-          aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-ink text-paper transition-colors hover:bg-brand-pink hover:text-ink"
-        >
-          <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden fill="none">
-            <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        </button>
-      </div>
+    <div className="lg:hidden">
+      {/* Capsules row: hamburger (left) · Donate + EN/ES (right). The logo
+          lives inside the expanded menu (below) to save space on the page. */}
+      <div className="flex items-center">
+        {/* Left capsule: hamburger only — opens the full-screen menu. */}
+        <div className={CAPSULE}>
+          <button
+            ref={openerRef}
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={open}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-ink text-paper transition-colors hover:bg-brand-pink hover:text-ink"
+          >
+            <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden fill="none">
+              <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          </button>
+        </div>
 
-      {/* Right capsule: Donate + EN/ES — always visible, never collapsed. */}
-      <div className="ml-auto">{rightControls}</div>
+        {/* Right capsule: Donate + EN/ES — always visible, never collapsed. */}
+        <div className="ml-auto">{rightControls}</div>
+      </div>
 
       {/* Full-screen overlay menu */}
       <div
@@ -103,7 +113,14 @@ export function MobileNav({
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="flex justify-end px-[24px] pt-[45px]">
+        <div className="flex items-center justify-between px-[24px] pt-[45px]">
+          <Link href="/" aria-label="Today, I'm Brave — home">
+            <img
+              src="/images/tib-logo.svg"
+              alt="Today, I'm Brave"
+              className="h-12 w-auto"
+            />
+          </Link>
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -119,7 +136,6 @@ export function MobileNav({
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => setOpen(false)}
               className="flex h-16 w-full max-w-[360px] items-center justify-center rounded-[16px] bg-ink text-2xl font-bold text-paper transition-colors hover:bg-brand-pink hover:text-ink"
             >
               {link.label}

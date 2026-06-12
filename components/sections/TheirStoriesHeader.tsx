@@ -7,10 +7,10 @@ export async function TheirStoriesHeader() {
   return (
     <section className="relative z-[60] h-[200vh]">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center text-center text-paper">
-        <p className="text-[96px] font-bold uppercase leading-none tracking-[-2.88px]">
+        <p className="text-[clamp(2.5rem,11vw,96px)] font-bold uppercase leading-none tracking-[-2.88px]">
           {theStories.eyebrow}
         </p>
-        <h2 className="mt-[20px] text-[228px] font-bold uppercase leading-none tracking-[-6.84px]">
+        <h2 className="mt-[20px] text-[clamp(3.25rem,18vw,228px)] font-bold uppercase leading-none tracking-[-6.84px] lg:text-[228px]">
           {theStories.title}
         </h2>
       </div>

@@ -7,9 +7,9 @@ import { getCopy } from "@/content/copy";
 export async function HomeHero() {
   const { hero } = await getCopy();
   return (
-    <section className="sticky top-[119px] z-0 flex min-h-[calc(100vh-119px)] items-center bg-cream pb-[12vh]">
+    <section className="sticky top-[90px] z-0 flex min-h-[calc(100svh-90px)] items-center bg-cream pb-[11vh] lg:top-[119px] lg:min-h-[calc(100vh-119px)] lg:pb-[12vh]">
       <Container className="text-center">
-        <h1 className="mx-auto max-w-[1088px] text-[60px] font-bold leading-[1.17] tracking-[-0.03em] [text-underline-position:from-font]">
+        <h1 className="mx-auto max-w-[1088px] text-[clamp(2rem,7vw,60px)] font-bold leading-[1.17] tracking-[-0.03em] [text-underline-position:from-font]">
           <img
             src="/images/tib-logo-blk.svg"
             alt="Today, I'm Brave"

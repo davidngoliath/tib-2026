@@ -13,7 +13,7 @@ export async function BraveCampTabs({ active }: { active: "about" | "forParents"
   return (
     // pt baked in here (not per-page) so the tabs sit at the same spot on both
     // Brave Camp pages and don't jump when navigating between them.
-    <nav className="flex items-center justify-center gap-[120px] pt-[16px] text-[22px] font-bold tracking-[-0.66px]">
+    <nav className="flex items-center justify-center gap-6 whitespace-nowrap px-4 pt-[16px] text-[clamp(0.875rem,3.4vw,22px)] font-bold tracking-[-0.66px] sm:gap-[120px] sm:px-0">
       {tabs.map((tab) =>
         tab.key === active ? (
           <span

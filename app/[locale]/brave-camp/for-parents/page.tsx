@@ -36,9 +36,11 @@ export default async function ForParentsAndCampers({
           stay clickable through the pulled-up registration layer; the modules
           below re-enable pointer events for their own buttons/links. */}
       <div className="relative z-10 pointer-events-none">
-        {/* 1. Pink registration — pulled up over the hero so it's centered in
-            the frame on load, pins there, and holds. */}
-        <div className="pointer-events-none sticky top-0 z-10 -mt-[100vh] flex h-screen items-center">
+        {/* 1. Pink registration — pins centered and holds while the video band
+            scrolls up over it. Desktop pulls it up a full viewport so it overlays
+            the hero on load; mobile pins it in the frame below the (shorter) nav
+            so it sits under the sub-nav on load and stays clear of the main nav. */}
+        <div className="pointer-events-none sticky top-[128px] z-10 flex h-[calc(100svh-128px)] items-center lg:top-0 lg:-mt-[100vh] lg:h-screen">
           <RegistrationCard />
         </div>
         <div className="h-screen" aria-hidden />

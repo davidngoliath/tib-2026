@@ -9,7 +9,7 @@ export async function CtaBand() {
   return (
     <section className="sticky top-0 z-[120] flex h-screen items-center justify-center bg-brand-blue">
       <Container>
-        <p className="mx-auto max-w-3xl text-center text-display font-bold leading-[1.1]">
+        <p className="mx-auto max-w-3xl text-center text-[clamp(2rem,6vw,56px)] font-bold leading-[1.1]">
           {cta.heading}
         </p>
         <div className="mt-8 flex justify-center gap-3">

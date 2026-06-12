@@ -22,7 +22,7 @@ export function HeroHighlight({
 }) {
   return (
     <span
-      className={`group relative inline-block cursor-default whitespace-nowrap underline decoration-[5px] transition-colors duration-200 ${HOVER_COLOR[color]}`}
+      className={`group relative inline-block cursor-default underline decoration-[5px] transition-colors duration-200 sm:whitespace-nowrap ${HOVER_COLOR[color]}`}
     >
       {children}
       {reveals.map((r, i) => (
@@ -31,7 +31,7 @@ export function HeroHighlight({
           src={r.src}
           alt={r.alt}
           aria-hidden
-          className={`pointer-events-none absolute z-10 scale-90 opacity-0 transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100 ${r.className}`}
+          className={`pointer-events-none absolute z-10 hidden scale-90 opacity-0 transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100 lg:block ${r.className}`}
         />
       ))}
     </span>

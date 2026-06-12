@@ -22,11 +22,11 @@ export async function KidsBenefitsHeading() {
   const { braveCampForParents } = await getCopy();
   const { kids } = braveCampForParents;
   return (
-    <div className="mx-auto w-[1440px] pl-[127px]">
-      <h2 className="whitespace-pre-line text-[56px] font-bold leading-none tracking-[-1.68px]">
+    <div className="mx-auto w-full px-5 sm:px-8 lg:w-[1440px] lg:px-0 lg:pl-[127px]">
+      <h2 className="whitespace-pre-line text-[clamp(2rem,6vw,56px)] font-bold leading-none tracking-[-1.68px]">
         {kids.title}
       </h2>
-      <p className="mt-8 max-w-[431px] text-body font-medium tracking-[-0.54px]">
+      <p className="mt-6 max-w-[431px] text-body font-medium tracking-[-0.54px] lg:mt-8">
         {kids.sub}
       </p>
     </div>
@@ -40,7 +40,8 @@ export async function KidsBenefitsCards() {
   const { kids } = braveCampForParents;
   return (
     <section className="overflow-hidden">
-      <div className="relative mx-auto h-[1675px] w-[1440px]">
+      {/* Desktop: exact staggered two-column cascade on the 1440px canvas. */}
+      <div className="relative mx-auto hidden h-[1675px] w-[1440px] lg:block">
         {benefits.map((benefit, i) => (
           <div
             key={benefit.id}
@@ -50,6 +51,20 @@ export async function KidsBenefitsCards() {
             style={{ top: TOPS[i] }}
           >
             <p className="text-[56px] font-bold leading-none tracking-[-1.68px]">
+              {kids.tiles[benefit.id]}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile/tablet: single-column stack of the same colored tiles. */}
+      <div className="mx-auto flex max-w-[520px] flex-col gap-5 px-5 py-16 sm:px-8 lg:hidden">
+        {benefits.map((benefit) => (
+          <div
+            key={benefit.id}
+            className={`flex min-h-[240px] items-center justify-center rounded-card px-8 py-10 text-center ${TILE_BG[benefit.color]}`}
+          >
+            <p className="text-[clamp(1.75rem,6vw,56px)] font-bold leading-none tracking-[-1.68px]">
               {kids.tiles[benefit.id]}
             </p>
           </div>

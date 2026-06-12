@@ -22,17 +22,17 @@ function CtaCard({
   cta: string;
 }) {
   return (
-    <div className="w-full px-[60px]">
+    <div className="w-full px-5 sm:px-8 lg:px-[60px]">
       <div
-        className={`mx-auto flex h-[634px] max-w-[1320px] flex-col items-center justify-center rounded-card px-10 text-center ${bg}`}
+        className={`mx-auto flex min-h-[420px] max-w-[1320px] flex-col items-center justify-center rounded-card px-7 py-12 text-center lg:h-[634px] lg:px-10 lg:py-0 ${bg}`}
       >
-        <h2 className="max-w-[678px] text-[56px] font-bold leading-none tracking-[-1.68px]">
+        <h2 className="max-w-[678px] text-[clamp(2rem,6vw,56px)] font-bold leading-[1.1] tracking-[-1.68px] lg:leading-none">
           {title}
         </h2>
-        <p className="mt-9 max-w-[573px] whitespace-pre-line text-body font-medium leading-[25px]">
+        <p className="mt-6 max-w-[573px] whitespace-pre-line text-body font-medium leading-[25px] lg:mt-9">
           {body}
         </p>
-        <div className="mt-12">
+        <div className="mt-10 lg:mt-12">
           <Button variant={button} href={href}>
             {cta}
           </Button>

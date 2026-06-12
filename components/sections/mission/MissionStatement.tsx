@@ -10,8 +10,8 @@ export async function MissionStatement() {
   return (
     <section className="sticky top-0 z-10 flex h-screen items-center">
       <Container className="w-full">
-        <div className="flex h-[634px] items-center justify-center rounded-card bg-brand-pink px-6 text-center">
-          <p className="max-w-[640px] whitespace-pre-line text-[32px] font-bold leading-[1.25] tracking-[-0.96px]">
+        <div className="flex min-h-[420px] items-center justify-center rounded-card bg-brand-pink px-6 py-12 text-center lg:h-[634px] lg:py-0">
+          <p className="max-w-[640px] whitespace-pre-line text-[clamp(1.5rem,5vw,32px)] font-bold leading-[1.25] tracking-[-0.96px]">
             {mission.statement}
           </p>
         </div>

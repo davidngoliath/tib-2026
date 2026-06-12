@@ -24,8 +24,9 @@ const PHOTOS: {
 
 export function MissionCollage() {
   return (
-    <section className="overflow-hidden py-[120px]">
-      <div className="relative mx-auto h-[3495px] w-[1440px]">
+    <section className="overflow-hidden py-16 lg:py-[120px]">
+      {/* Desktop: exact scattered collage on the 1440px reference canvas. */}
+      <div className="relative mx-auto hidden h-[3495px] w-[1440px] lg:block">
         {PHOTOS.map((p) => (
           <div
             key={p.src}
@@ -36,6 +37,23 @@ export function MissionCollage() {
               <VideoLoop mp4={p.video} poster={p.src} className="h-full w-full" />
             ) : (
               <Image src={p.src} alt="" fill className="object-cover" sizes="60vw" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile/tablet: simple full-width vertical stack at each frame's ratio. */}
+      <div className="mx-auto flex max-w-[520px] flex-col gap-5 px-5 sm:px-8 lg:hidden">
+        {PHOTOS.map((p) => (
+          <div
+            key={p.src}
+            className="relative overflow-hidden rounded-[20px] bg-ink/5"
+            style={{ aspectRatio: `${p.w} / ${p.h}` }}
+          >
+            {p.video ? (
+              <VideoLoop mp4={p.video} poster={p.src} className="h-full w-full" />
+            ) : (
+              <Image src={p.src} alt="" fill className="object-cover" sizes="100vw" />
             )}
           </div>
         ))}

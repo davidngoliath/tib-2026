@@ -24,14 +24,14 @@ export async function StoryCard({ story }: { story: Story }) {
   const role = storyRoles[story.name] ?? story.role;
   return (
     <article
-      className={`flex h-[347px] gap-10 rounded-[20px] p-[26px] ${BG[story.color]}`}
+      className={`flex flex-col gap-6 rounded-[20px] p-[26px] lg:h-[347px] lg:flex-row lg:gap-10 ${BG[story.color]}`}
     >
-      <div className="flex min-w-0 flex-1 flex-col justify-between">
-        <h3 className="text-[56px] font-bold leading-[64px] tracking-[-1.68px]">
+      <div className="flex min-w-0 flex-1 flex-col justify-between gap-6 lg:gap-0">
+        <h3 className="text-[clamp(2.25rem,7vw,56px)] font-bold leading-[1.05] tracking-[-1.68px]">
           {story.name}
         </h3>
         <div>
-          <p className="text-[32px] font-bold leading-none tracking-[-0.96px]">
+          <p className="text-[clamp(1.5rem,4.5vw,32px)] font-bold leading-none tracking-[-0.96px]">
             {role}
           </p>
           <div className="mt-5">
@@ -43,7 +43,7 @@ export async function StoryCard({ story }: { story: Story }) {
           </div>
         </div>
       </div>
-      <div className="relative h-full w-[420px] shrink-0 overflow-hidden rounded-[10px]">
+      <div className="relative aspect-[420/295] w-full shrink-0 overflow-hidden rounded-[10px] lg:aspect-auto lg:h-full lg:w-[420px]">
         <Image
           src={story.image}
           alt={story.name}

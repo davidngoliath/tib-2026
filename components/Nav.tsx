@@ -23,7 +23,7 @@ export async function Nav() {
   );
 
   return (
-    <header className="sticky top-0 z-50 px-[24px] pt-[45px] lg:px-[60px]">
+    <header className="sticky top-0 z-50 px-[24px] pt-4 lg:px-[60px] lg:pt-[45px]">
       {/* Desktop (≥1024px): full nav — logo + links · Register/Donate · EN/ES. */}
       <nav className="mx-auto hidden max-w-[1320px] items-center lg:flex">
         {/* Logo + nav links */}
@@ -59,7 +59,6 @@ export async function Nav() {
       {/* Tablet/mobile (<1024px): two collapsed capsules + full-screen menu. */}
       <div className="mx-auto max-w-[1320px]">
         <MobileNav
-          logo={<Logo hoverPink />}
           links={t.nav.links}
           registerLabel={t.nav.register}
           rightControls={rightControls}

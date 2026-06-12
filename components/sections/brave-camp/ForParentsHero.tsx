@@ -8,10 +8,14 @@ import { getCopy } from "@/content/copy";
 export async function ForParentsHero() {
   const { braveCampForParents } = await getCopy();
   return (
-    <section className="sticky top-[119px] z-0 flex h-[calc(100vh-119px)] flex-col bg-cream">
+    // Mobile: a short sticky bar holding just the sub-nav, so the tabs stay
+    // pinned (like the About page) until the scroll-stack covers them; the
+    // registration card pins just below. Desktop: full-height pinned cream layer
+    // (tabs + scroll cue) that the pulled-up registration card overlays.
+    <section className="sticky top-[90px] z-0 flex flex-col bg-cream lg:top-[119px] lg:h-[calc(100vh-119px)]">
       <BraveCampTabs active="forParents" />
-      <div className="flex-1" aria-hidden />
-      <div className="flex flex-col items-center gap-3 pb-10">
+      <div className="hidden flex-1 lg:block" aria-hidden />
+      <div className="hidden flex-col items-center gap-3 pb-10 lg:flex">
         <p className="text-[16px] font-bold tracking-[-0.48px]">
           {braveCampForParents.scroll}
         </p>

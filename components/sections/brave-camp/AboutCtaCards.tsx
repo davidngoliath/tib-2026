@@ -25,16 +25,16 @@ export async function AboutCtaCards() {
   return (
     <section className="sticky top-0 z-40 flex h-screen items-center">
       <Container>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           {cards.map((card) => (
             <div
               key={card.href}
-              className={`flex h-[520px] flex-col items-center rounded-card px-10 pb-[69px] pt-[79px] text-center ${card.bg}`}
+              className={`flex min-h-[300px] flex-col items-center rounded-card px-7 pb-10 pt-12 text-center lg:h-[520px] lg:px-10 lg:pb-[69px] lg:pt-[79px] ${card.bg}`}
             >
-              <p className="max-w-[470px] text-subhead font-bold tracking-[-0.96px]">
+              <p className="max-w-[470px] text-[clamp(1.25rem,4.5vw,32px)] font-bold tracking-[-0.96px]">
                 {card.kicker}
               </p>
-              <h2 className="mt-[50px] whitespace-pre-line text-[56px] font-bold leading-[64px] tracking-[-1.68px]">
+              <h2 className="mt-8 whitespace-pre-line text-[clamp(2rem,5.5vw,56px)] font-bold leading-[1.15] tracking-[-1.68px] lg:mt-[50px] lg:leading-[64px]">
                 {card.title}
               </h2>
               <div className="mt-auto">

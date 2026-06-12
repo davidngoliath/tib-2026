@@ -8,7 +8,7 @@ export async function ConnectBand() {
   return (
     <section className="sticky top-0 z-30 flex h-screen items-center bg-cream">
       <Container className="text-center">
-        <p className="mx-auto max-w-[874px] whitespace-pre-line text-[56px] font-bold leading-[64px] tracking-[-1.68px]">
+        <p className="mx-auto max-w-[874px] whitespace-pre-line text-[clamp(2rem,6vw,56px)] font-bold leading-[1.15] tracking-[-1.68px] lg:leading-[64px]">
           {braveCampAbout.connect}
         </p>
       </Container>
