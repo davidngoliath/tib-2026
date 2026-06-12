@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local Claude settings (keep launch.json shared)
+.claude/settings.local.json
+
+# raw working assets — only the resized/optimized copies in /public are used
+/tib-videos/
+/tib-images-home/
+/tib-images-mission/
+/tib-images-brave-camp/
+/helvetica-neue-lt-pro/

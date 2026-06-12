@@ -1,0 +1,13 @@
+{
+  "mcp": {
+    "servers": {
+      "figmaApi": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "mcp-figma"
+        ]
+      }
+    }
+  }
+}

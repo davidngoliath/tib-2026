@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  TIB design tokens — extracted from Figma "20260601 - Production Ready".
+  Single fixed light theme (cream). No dark mode.
+*/
+@theme {
+  /* Brand palette */
+  --color-cream: #f5f2e5; /* page background, cards */
+  --color-ink: #000000; /* text */
+  --color-paper: #ffffff;
+  --color-brand-green: #39c85c;
+  --color-brand-yellow: #f5ca16;
+  --color-brand-orange: #ed4a26;
+  --color-brand-blue: #6cc6ff;
+  --color-brand-pink: #fbbae5;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Typography — Helvetica Neue LT Pro */
+  --font-sans: var(--font-helvetica), Arial, Helvetica, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Display/heading = 56px / 64px line / -1.68px tracking */
+  --text-display: 3.5rem;
+  --text-display--line-height: 1.143;
+  --text-display--letter-spacing: -0.03em;
+  /* Section eyebrow/subhead = 32px / -0.96px tracking */
+  --text-subhead: 2rem;
+  --text-subhead--line-height: 1.1;
+  --text-subhead--letter-spacing: -0.03em;
+  /* Body = 18px / 25px line */
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.389;
+
+  /* Radii */
+  --radius-card: 20px;
+  --radius-media: 10px;
+
+  /* Layout */
+  --spacing-gutter: 60px; /* page side margin */
+  --container-content: 1320px; /* inner content width */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Lion sticker: rides with the pinned video band (parked bottom-right) and
+   slides in as the band's hold region scrolls, then holds until covered. */
+@keyframes lion-slide {
+  from {
+    opacity: 0;
+    transform: translateY(160px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.lion-track {
+  view-timeline-name: --lion;
+  view-timeline-axis: block;
+}
+.lion-sticker {
+  animation: lion-slide both;
+  animation-timeline: --lion;
+  /* Delay: video settles first (0–20%), then the sticker slides in (20–50%). */
+  animation-range: entry 20% entry 50%;
+}
+@supports not (animation-timeline: view()) {
+  .lion-sticker {
+    animation: none;
+    opacity: 1;
+  }
 }
