@@ -23,7 +23,7 @@ export async function BraveCampPromo() {
               <Button variant="darkGreen" href={registration.registerHref}>
                 {braveCamp.register}
               </Button>
-              <Button variant="darkGreen">{braveCamp.learnMore}</Button>
+              <Button variant="darkGreen" href="/brave-camp/about">{braveCamp.learnMore}</Button>
             </div>
           </div>
           <div className="relative aspect-[653/437] w-full shrink-0 self-end overflow-hidden rounded-media bg-ink/10 lg:w-[653px]">
