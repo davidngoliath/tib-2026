@@ -3,6 +3,7 @@ import { Button } from "./Button";
 import { DonateButton } from "./DonateButton";
 import { Logo } from "./Logo";
 import { LanguageToggle } from "./LanguageToggle";
+import { MobileNav } from "./MobileNav";
 
 // Sticky top nav (Figma "nav-block" 669:808). Three translucent capsules:
 // [logo + links] · [Register/Donate] · [EN/ES]. Localized via getCopy().
@@ -12,9 +13,19 @@ const CAPSULE =
 export async function Nav() {
   const t = await getCopy();
 
+  // Right-side controls shared between desktop and the mobile right capsule:
+  // Donate + EN/ES toggle, always visible and never collapsed into the menu.
+  const rightControls = (
+    <div className={CAPSULE}>
+      <DonateButton variant="donate" label={t.nav.donate} />
+      <LanguageToggle />
+    </div>
+  );
+
   return (
-    <header className="sticky top-0 z-50 px-[60px] pt-[45px]">
-      <nav className="mx-auto flex max-w-[1320px] items-center">
+    <header className="sticky top-0 z-50 px-[24px] pt-[45px] lg:px-[60px]">
+      {/* Desktop (≥1024px): full nav — logo + links · Register/Donate · EN/ES. */}
+      <nav className="mx-auto hidden max-w-[1320px] items-center lg:flex">
         {/* Logo + nav links */}
         <div className={CAPSULE}>
           <Logo hoverPink />
@@ -44,6 +55,16 @@ export async function Nav() {
           </div>
         </div>
       </nav>
+
+      {/* Tablet/mobile (<1024px): two collapsed capsules + full-screen menu. */}
+      <div className="mx-auto max-w-[1320px]">
+        <MobileNav
+          logo={<Logo hoverPink />}
+          links={t.nav.links}
+          registerLabel={t.nav.register}
+          rightControls={rightControls}
+        />
+      </div>
     </header>
   );
 }
