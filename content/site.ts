@@ -29,11 +29,22 @@ export const footer = {
   legal:
     "Today, I'm Brave® is a registered 501(c)(3) nonprofit organization | Tax ID number: 81-4843811  Contributions to Today, I'm Brave are tax-deductible to the extent permitted by law. CFC #10715.",
   badge: "/images/footer/csq-award.svg",
-  // X was removed from the social set.
   socials: [
-    { platform: "facebook", href: "#", icon: "/images/footer/facebook.svg" },
-    { platform: "instagram", href: "#", icon: "/images/footer/instagram.svg" },
-    { platform: "youtube", href: "#", icon: "/images/footer/youtube.svg" },
+    {
+      platform: "facebook",
+      href: "https://www.facebook.com/TodayImBrave/",
+      icon: "/images/footer/facebook.svg",
+    },
+    {
+      platform: "instagram",
+      href: "https://www.instagram.com/todayimbrave/",
+      icon: "/images/footer/instagram.svg",
+    },
+    {
+      platform: "youtube",
+      href: "https://www.youtube.com/@todayimbrave5490",
+      icon: "/images/footer/youtube.svg",
+    },
   ] satisfies SocialLink[],
 };
 

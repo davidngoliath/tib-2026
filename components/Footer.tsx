@@ -24,6 +24,8 @@ export async function Footer() {
           <li key={s.platform}>
             <a
               href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={SOCIAL_LABELS[s.platform]}
               className="block transition-opacity hover:opacity-70"
             >
