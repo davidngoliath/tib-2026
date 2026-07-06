@@ -10,7 +10,7 @@ function embedUrl(video: Extract<Video, { type: "embed" }>) {
   const params = "autoplay=1&rel=0";
   return video.provider === "vimeo"
     ? `https://player.vimeo.com/video/${video.id}?${params}`
-    : `https://www.youtube.com/embed/${video.id}?${params}`;
+    : `https://www.youtube-nocookie.com/embed/${video.id}?${params}`;
 }
 
 export function WatchNowButton({
@@ -63,6 +63,8 @@ export function WatchNowButton({
               src={embedUrl(video)}
               title="Video"
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+              referrerPolicy="strict-origin-when-cross-origin"
+              sandbox="allow-same-origin allow-scripts allow-presentation"
               allowFullScreen
             />
             <button

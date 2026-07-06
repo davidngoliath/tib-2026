@@ -72,6 +72,8 @@ export function DonateButton({
                   name="donorbox"
                   title={label}
                   allow="payment"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
                   className="mx-auto h-[min(780px,72vh)] w-full bg-paper"
                   scrolling="yes"
                 />
