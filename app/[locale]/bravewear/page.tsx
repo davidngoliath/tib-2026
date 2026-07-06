@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { ComingSoon } from "@/components/ComingSoon";
+import { Footer } from "@/components/Footer";
 import { createPageMetadata, resolveLocale } from "@/lib/seo";
 
 const PAGE_SEO = {
@@ -38,5 +39,10 @@ export default async function Page({
   const { locale } = await params;
   setRequestLocale(resolveLocale(locale));
 
-  return <ComingSoon className="bg-brand-pink" />;
+  return (
+    <div className="-mt-[90px] flex flex-1 flex-col bg-brand-pink pt-[90px] lg:-mt-[119px] lg:pt-[119px]">
+      <ComingSoon className="bg-transparent" />
+      <Footer />
+    </div>
+  );
 }

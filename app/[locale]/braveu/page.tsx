@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { ComingSoon } from "@/components/ComingSoon";
+import { Footer } from "@/components/Footer";
 import { createPageMetadata, resolveLocale } from "@/lib/seo";
 
 const PAGE_SEO = {
@@ -38,5 +39,10 @@ export default async function Page({
   const { locale } = await params;
   setRequestLocale(resolveLocale(locale));
 
-  return <ComingSoon />;
+  return (
+    <>
+      <ComingSoon />
+      <Footer />
+    </>
+  );
 }
