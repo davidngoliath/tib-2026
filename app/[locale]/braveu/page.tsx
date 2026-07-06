@@ -41,7 +41,7 @@ export default async function Page({
 
   return (
     <>
-      <ComingSoon />
+      <ComingSoon className="min-h-[calc(100svh-90px)] lg:min-h-[calc(100vh-119px)]" />
       <Footer />
     </>
   );

@@ -41,7 +41,7 @@ export default async function Page({
 
   return (
     <div className="-mt-[90px] flex flex-1 flex-col bg-brand-pink pt-[90px] lg:-mt-[119px] lg:pt-[119px]">
-      <ComingSoon className="bg-transparent" />
+      <ComingSoon className="min-h-[calc(100svh-90px)] bg-transparent lg:min-h-[calc(100vh-119px)]" />
       <Footer />
     </div>
   );
