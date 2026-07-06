@@ -7,6 +7,7 @@ type Props = {
   subhead?: string;
   className?: string;
   align?: "left" | "center";
+  headingLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 };
 
 export function EyebrowTitle({
@@ -15,7 +16,10 @@ export function EyebrowTitle({
   subhead,
   className = "",
   align = "left",
+  headingLevel = "h2",
 }: Props) {
+  const HeadingTag = headingLevel;
+
   return (
     <div className={`${align === "center" ? "text-center" : ""} ${className}`}>
       {eyebrow && (
@@ -23,9 +27,9 @@ export function EyebrowTitle({
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-[20px] text-[clamp(3.25rem,18vw,228px)] font-bold uppercase leading-none tracking-[-6.84px] lg:text-[228px]">
+      <HeadingTag className="mt-[20px] text-[clamp(3.25rem,18vw,228px)] font-bold uppercase leading-none tracking-[-6.84px] lg:text-[228px]">
         {title}
-      </h2>
+      </HeadingTag>
       {subhead && (
         <p className="mx-auto mt-6 max-w-[60rem] whitespace-pre-line text-[clamp(1.25rem,4.5vw,32px)] font-bold leading-[1.15] tracking-[-0.96px] lg:mt-10">
           {subhead}

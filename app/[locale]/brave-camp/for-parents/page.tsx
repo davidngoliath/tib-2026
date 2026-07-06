@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { MediaBand } from "@/components/MediaBand";
 import { ForParentsHero } from "@/components/sections/brave-camp/ForParentsHero";
@@ -10,6 +11,20 @@ import { FaqFadeLayer } from "@/components/sections/brave-camp/FaqFadeLayer";
 import { ReadyCard, ContactCard } from "@/components/sections/brave-camp/ReadyContactCards";
 import { Footer } from "@/components/Footer";
 import type { Video } from "@/content/types";
+import { createPageMetadata, resolveLocale } from "@/lib/seo";
+
+const PAGE_SEO = {
+  en: {
+    title: "Brave Camp for Parents & Campers",
+    description:
+      "Get Brave Camp details for families, including registration, camper benefits, activities, schedule, and frequently asked questions.",
+  },
+  es: {
+    title: "Brave Camp para padres y campistas",
+    description:
+      "Obtén los detalles de Brave Camp para familias, incluyendo inscripción, beneficios para campistas, actividades, horario y preguntas frecuentes.",
+  },
+} as const;
 
 // For Parents media band (Figma layer "06 2").
 const campBand: Video = {
@@ -18,13 +33,29 @@ const campBand: Video = {
   poster: "/images/brave-camp/brave-camp-07-poster.jpg",
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = resolveLocale(locale);
+
+  return createPageMetadata({
+    ...PAGE_SEO[currentLocale],
+    pathname: "/brave-camp/for-parents",
+    locale: currentLocale,
+    imagePath: "/images/brave-camp/brave-camp-07-poster.jpg",
+  });
+}
+
 export default async function ForParentsAndCampers({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
+  setRequestLocale(resolveLocale(locale));
 
   return (
     <main className="flex-1">

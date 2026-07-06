@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { MediaBand } from "@/components/MediaBand";
 import { AboutHero } from "@/components/sections/brave-camp/AboutHero";
@@ -6,6 +7,20 @@ import { ConnectBand } from "@/components/sections/brave-camp/ConnectBand";
 import { AboutCtaCards } from "@/components/sections/brave-camp/AboutCtaCards";
 import { Footer } from "@/components/Footer";
 import type { Video } from "@/content/types";
+import { createPageMetadata, resolveLocale } from "@/lib/seo";
+
+const PAGE_SEO = {
+  en: {
+    title: "About Brave Camp",
+    description:
+      "Discover Brave Camp, a free weeklong sleepaway camp that helps kids grow confidence, friendship, and resilience through nature and adventure.",
+  },
+  es: {
+    title: "Sobre Brave Camp",
+    description:
+      "Descubre Brave Camp, un campamento gratuito de una semana que ayuda a niñas y niños a desarrollar confianza, amistad y resiliencia a través de la naturaleza y la aventura.",
+  },
+} as const;
 
 // Brave Camp media bands (Figma layers "06 1" and "06 3").
 const campBand: Video = {
@@ -19,13 +34,29 @@ const busBand: Video = {
   poster: "/images/brave-camp/brave-camp-bus-poster.jpg",
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = resolveLocale(locale);
+
+  return createPageMetadata({
+    ...PAGE_SEO[currentLocale],
+    pathname: "/brave-camp/about",
+    locale: currentLocale,
+    imagePath: "/images/brave-camp/brave-camp-06-poster.jpg",
+  });
+}
+
 export default async function AboutBraveCamp({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
+  setRequestLocale(resolveLocale(locale));
 
   return (
     <main className="flex-1">

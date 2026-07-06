@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { HomeHero } from "@/components/sections/HomeHero";
 import { BraveCampPromo } from "@/components/sections/BraveCampPromo";
@@ -13,6 +14,20 @@ import { PartnerGrid } from "@/components/sections/PartnerGrid";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Footer } from "@/components/Footer";
 import type { Video } from "@/content/types";
+import { createPageMetadata, resolveLocale } from "@/lib/seo";
+
+const PAGE_SEO = {
+  en: {
+    title: "Unlocking Bravery in Today's Youth",
+    description:
+      "Today, I'm Brave is a global nonprofit helping young people build courage through camps, community, and stories.",
+  },
+  es: {
+    title: "Desbloqueando la valentía en la juventud de hoy",
+    description:
+      "Today, I'm Brave es una organización sin fines de lucro global que ayuda a jóvenes a desarrollar valentía a través de campamentos, comunidad e historias.",
+  },
+} as const;
 
 // Looping Brave Camp media band — self-hosted MP4/WebM.
 const braveCampLoop: Video = {
@@ -29,13 +44,28 @@ const youthPortraitBand: Video = {
   poster: "/images/home/youth-portrait.jpg",
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = resolveLocale(locale);
+
+  return createPageMetadata({
+    ...PAGE_SEO[currentLocale],
+    locale: currentLocale,
+    imagePath: "/images/home/youth-portrait.jpg",
+  });
+}
+
 export default async function Home({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
+  setRequestLocale(resolveLocale(locale));
 
   return (
     <main className="flex-1">

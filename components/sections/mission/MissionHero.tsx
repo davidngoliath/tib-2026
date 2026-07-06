@@ -13,6 +13,7 @@ export async function MissionHero() {
           eyebrow={mission.eyebrow}
           title={mission.title}
           align="center"
+          headingLevel="h1"
           className="mx-auto"
         />
       </Container>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 import { MissionHero } from "@/components/sections/mission/MissionHero";
@@ -7,6 +8,20 @@ import { MediaBand } from "@/components/MediaBand";
 import { MissionCollage } from "@/components/sections/mission/MissionCollage";
 import { Footer } from "@/components/Footer";
 import type { Video } from "@/content/types";
+import { createPageMetadata, resolveLocale } from "@/lib/seo";
+
+const PAGE_SEO = {
+  en: {
+    title: "Our Mission",
+    description:
+      "Learn how Today, I'm Brave helps people build courage through programs, community, and stories that inspire action.",
+  },
+  es: {
+    title: "Nuestra misión",
+    description:
+      "Conoce cómo Today, I'm Brave ayuda a las personas a desarrollar valentía a través de programas, comunidad e historias que inspiran acción.",
+  },
+} as const;
 
 // Mission media band — looping video (Figma "Group 125", the dark hand shot).
 const missionBand: Video = {
@@ -15,13 +30,29 @@ const missionBand: Video = {
   poster: "/images/mission/media-band.jpg",
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = resolveLocale(locale);
+
+  return createPageMetadata({
+    ...PAGE_SEO[currentLocale],
+    pathname: "/our-mission",
+    locale: currentLocale,
+    imagePath: "/images/mission/media-band.jpg",
+  });
+}
+
 export default async function OurMission({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
+  setRequestLocale(resolveLocale(locale));
 
   return (
     <main className="flex-1">

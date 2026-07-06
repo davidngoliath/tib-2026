@@ -13,9 +13,9 @@ export async function RegistrationCard() {
   return (
     <Container>
       <div className="pointer-events-auto flex min-h-[460px] flex-col items-center rounded-card bg-brand-pink px-7 py-12 text-center lg:h-[537px] lg:px-10 lg:pb-[55px] lg:pt-[87px]">
-        <h2 className="whitespace-pre-line text-[clamp(2rem,6vw,56px)] font-bold leading-[1.05] tracking-[-1.68px] lg:leading-[55px]">
+        <h1 className="whitespace-pre-line text-[clamp(2rem,6vw,56px)] font-bold leading-[1.05] tracking-[-1.68px] lg:leading-[55px]">
           {reg.title}
-        </h2>
+        </h1>
         <p className="mt-8 max-w-[573px] text-body font-medium leading-[25px] lg:mt-[54px]">
           {reg.body}
         </p>
