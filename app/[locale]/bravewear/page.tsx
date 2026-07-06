@@ -38,5 +38,5 @@ export default async function Page({
   const { locale } = await params;
   setRequestLocale(resolveLocale(locale));
 
-  return <ComingSoon />;
+  return <ComingSoon className="bg-brand-pink" />;
 }

@@ -1,9 +1,13 @@
 // Placeholder shown while real page designs are pending. Centered "COMING SOON"
 // on the cream page background (Figma "Brave Camp | Partners", 20260601 page).
 // Reused by every stub route so they swap out uniformly when designs land.
-export function ComingSoon() {
+export function ComingSoon({
+  className = "bg-cream",
+}: {
+  className?: string;
+}) {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center px-6 py-32 text-center text-black">
+    <main className={`flex flex-1 flex-col items-center justify-center px-6 py-32 text-center text-black ${className}`}>
       <p className="text-[48px] font-bold leading-none tracking-[-1.44px] sm:text-[72px] sm:tracking-[-2.16px] lg:text-[96px] lg:tracking-[-2.88px]">
         COMING
       </p>
