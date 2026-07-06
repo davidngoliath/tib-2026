@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { BASE, VARIANTS, type ButtonVariant } from "./Button";
 import type { Video } from "@/content/types";
 
@@ -47,37 +48,40 @@ export function WatchNowButton({
         {label}
       </button>
 
-      {open && video.type === "embed" && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/85 p-6"
-        >
+      {open &&
+        video.type === "embed" &&
+        createPortal(
           <div
-            className="relative aspect-video w-full max-w-5xl"
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-[300] flex items-center justify-center bg-black/85 p-6"
           >
-            <iframe
-              className="h-full w-full rounded-media"
-              src={embedUrl(video)}
-              title="Video"
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-              referrerPolicy="strict-origin-when-cross-origin"
-              sandbox="allow-same-origin allow-scripts allow-presentation"
-              allowFullScreen
-            />
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label="Close video"
-              className="absolute -top-11 right-0 text-3xl font-bold leading-none text-paper transition-opacity hover:opacity-70"
+            <div
+              className="relative aspect-video w-full max-w-5xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              ✕
-            </button>
-          </div>
-        </div>
-      )}
+              <iframe
+                className="h-full w-full rounded-media"
+                src={embedUrl(video)}
+                title="Video"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+                referrerPolicy="strict-origin-when-cross-origin"
+                sandbox="allow-same-origin allow-scripts allow-presentation"
+                allowFullScreen
+              />
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close video"
+                className="absolute -top-11 right-0 text-3xl font-bold leading-none text-paper transition-opacity hover:opacity-70"
+              >
+                ✕
+              </button>
+            </div>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
