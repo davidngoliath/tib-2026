@@ -60,7 +60,7 @@ export default async function Page({
           <Container>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {press.map((item) => (
-                <PressCard key={item.outlet} item={item} />
+                <PressCard key={item.href} item={item} />
               ))}
             </div>
           </Container>

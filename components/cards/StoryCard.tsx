@@ -40,7 +40,7 @@ export async function StoryCard({
           {story.name}
         </h3>
         <div>
-          <p className="text-[clamp(1.5rem,4.5vw,32px)] font-bold leading-none tracking-[-0.96px]">
+          <p className="break-words text-[clamp(1.5rem,4.5vw,32px)] font-bold leading-none tracking-[-0.96px]">
             {role}
           </p>
           <div className="mt-5">
