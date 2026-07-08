@@ -19,12 +19,21 @@ const BTN: Record<Story["color"], ButtonVariant> = {
   blue: "darkBlue",
 };
 
-export async function StoryCard({ story }: { story: Story }) {
+export async function StoryCard({
+  story,
+  variant = "brand",
+}: {
+  story: Story;
+  variant?: "brand" | "cream";
+}) {
   const { storyRoles, common } = await getCopy();
   const role = storyRoles[story.name] ?? story.role;
+  const background = variant === "cream" ? "bg-cream" : BG[story.color];
+  const buttonVariant = variant === "cream" ? "dark" : BTN[story.color];
+
   return (
     <article
-      className={`flex flex-col gap-6 rounded-[20px] p-[26px] lg:h-[347px] lg:flex-row lg:gap-10 ${BG[story.color]}`}
+      className={`flex flex-col gap-6 rounded-[20px] p-[26px] lg:h-[347px] lg:flex-row lg:gap-10 ${background}`}
     >
       <div className="flex min-w-0 flex-1 flex-col justify-between gap-6 lg:gap-0">
         <h3 className="text-[clamp(2.25rem,7vw,56px)] font-bold leading-[1.05] tracking-[-1.68px]">
@@ -38,7 +47,7 @@ export async function StoryCard({ story }: { story: Story }) {
             <WatchNowButton
               video={story.video}
               label={common.watchNow}
-              variant={BTN[story.color]}
+              variant={buttonVariant}
             />
           </div>
         </div>

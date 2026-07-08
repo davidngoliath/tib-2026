@@ -6,9 +6,12 @@ const DEFAULT_OG_IMAGE_PATH = "/images/home/youth-portrait.jpg";
 
 export const indexablePaths = [
   "",
+  "/action",
   "/our-mission",
+  "/press",
   "/brave-camp/about",
   "/brave-camp/for-parents",
+  "/stories",
 ] as const;
 
 export const siteUrl = new URL(
