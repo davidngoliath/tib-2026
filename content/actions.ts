@@ -11,6 +11,11 @@ export type ActionItem = {
 
 export const actions: ActionItem[] = [
   {
+    title: "Brave Camp",
+    image: "/images/action/brave-camp.jpg",
+    video: { type: "embed", provider: "youtube", id: "rssaX0Px0Zk" },
+  },
+  {
     title: "Project Angel Food",
     image: "/images/action/project-angel-food.jpg",
     video: { type: "embed", provider: "youtube", id: "XI6TZrgMLC8" },
@@ -45,11 +50,6 @@ export const actions: ActionItem[] = [
     image: "/images/action/brave-speaker-series.jpg",
     video: { type: "embed", provider: "youtube", id: "Ef5GdSO1g88" },
     featured: true,
-  },
-  {
-    title: "Brave Camp",
-    image: "/images/action/brave-camp.jpg",
-    video: { type: "embed", provider: "youtube", id: "rssaX0Px0Zk" },
   },
   {
     title: "Champion Boxers Inspire Their Alma",
