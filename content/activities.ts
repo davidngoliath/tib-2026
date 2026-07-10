@@ -12,7 +12,10 @@ export type Activity = {
 // The design currently uses the same photo for all three cards (placeholder
 // export) — swap in real photos when the designer provides them.
 export const activities: Activity[] = [
-  { id: "meditation", image: "/images/for-parents/activity.jpg" },
-  { id: "art", image: "/images/for-parents/activity.jpg" },
-  { id: "growth", image: "/images/for-parents/activity.jpg" },
+  {
+    id: "meditation",
+    image: "/images/for-parents/meditaion-mindfulness.jpg",
+  },
+  { id: "art", image: "/images/for-parents/creative-art-forms.jpg" },
+  { id: "growth", image: "/images/for-parents/growth-bravery.jpg" },
 ];
