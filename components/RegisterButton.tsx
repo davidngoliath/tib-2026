@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { useLocale } from "next-intl";
 import { registration } from "@/content/braveCamp";
 import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 import { BASE, VARIANTS, type ButtonVariant } from "./Button";
 
 function isExternalHref(href: string) {
@@ -22,9 +24,11 @@ export function RegisterButton({
   onNavigate?: () => void;
 }) {
   const [open, setOpen] = useState(false);
+  const locale = useLocale() as Locale;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const actionable = registration.isOpen && registration.registerHref !== "#";
+  const closedCopy = registration.closedCopy[locale] ?? registration.closedCopy.en;
   const cls = `${BASE} ${VARIANTS[variant]} ${className}`;
 
   useEffect(() => {
@@ -104,7 +108,7 @@ export function RegisterButton({
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label={registration.closedTitle}
+            aria-label={closedCopy.title}
             onClick={() => setOpen(false)}
             className="fixed inset-0 z-[250] flex items-center justify-center bg-ink/80 p-6"
           >
@@ -116,7 +120,7 @@ export function RegisterButton({
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  aria-label="Close registration message"
+                  aria-label={closedCopy.closeLabel}
                   className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-ink text-lg font-bold leading-none text-cream transition-colors hover:bg-brand-pink hover:text-ink"
                 >
                   ✕
@@ -125,14 +129,14 @@ export function RegisterButton({
 
               <div className="px-5 pb-5 pt-1 text-center lg:px-7 lg:pb-7">
                 <p className="mx-auto max-w-[430px] text-[clamp(1.5rem,4.5vw,32px)] font-bold leading-[1.12] tracking-[-0.96px] text-ink">
-                  {registration.closedMessage}
+                  {closedCopy.message}
                 </p>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   className={`${BASE} ${VARIANTS.register} mt-8 h-12 px-6 text-base`}
                 >
-                  Close
+                  {closedCopy.closeButton}
                 </button>
               </div>
             </div>
