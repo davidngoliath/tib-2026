@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { features } from "@/content/features";
 import { getCopy } from "@/content/copy";
+import { placeholderDataUrl } from "@/lib/imagePlaceholders";
 
 // About page feature rows (Figma "Group 165/166/131", 669:1126–1139): a 650×463
 // color card + a 650×463 photo per row, alternating sides, 60px page margins.
@@ -42,7 +43,9 @@ export async function FeatureRows() {
                   alt=""
                   fill
                   className="object-cover"
-                  sizes="(min-width:1024px) 650px, 100vw"
+                  placeholder="blur"
+                  blurDataURL={placeholderDataUrl("#D7CEC0")}
+                  sizes="(min-width:1024px) 650px, (min-width:640px) calc(100vw - 64px), calc(100vw - 40px)"
                 />
               </div>
             );

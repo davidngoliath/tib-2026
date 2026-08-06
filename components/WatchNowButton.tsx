@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { BASE, VARIANTS, type ButtonVariant } from "./Button";
 import type { Video } from "@/content/types";
@@ -25,24 +25,60 @@ export function WatchNowButton({
 }) {
   const [open, setOpen] = useState(false);
   const playable = video.type === "embed" && video.id.length > 0;
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+
+    const trigger = triggerRef.current;
+    const dialog = dialogRef.current;
+    const focusables = () =>
+      Array.from(
+        dialog?.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      );
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    focusables()[0]?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      trigger?.focus();
     };
   }, [open]);
 
   return (
     <>
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => playable && setOpen(true)}
         aria-disabled={!playable}
+        aria-haspopup={playable ? "dialog" : undefined}
         className={`${BASE} ${VARIANTS[variant]}`}
       >
         {label}
@@ -52,8 +88,10 @@ export function WatchNowButton({
         video.type === "embed" &&
         createPortal(
           <div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
+            aria-label={label}
             onClick={() => setOpen(false)}
             className="fixed inset-0 z-[300] flex items-center justify-center bg-black/85 p-6"
           >

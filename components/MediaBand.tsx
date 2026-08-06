@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { VideoLoop } from "@/components/VideoLoop";
 import type { Video } from "@/content/types";
+import { placeholderDataUrl } from "@/lib/imagePlaceholders";
 
 // Full-width media band (the "Brave Camp GIF" sections, Figma 669:457 / 669:592).
 // - loop  → silent autoplaying self-hosted MP4/WebM (modern GIF replacement)
@@ -23,7 +24,15 @@ export function MediaBand({ video, className = "" }: Props) {
         />
       ) : (
         video.poster && (
-          <Image src={video.poster} alt="" fill className="object-cover" sizes="100vw" />
+          <Image
+            src={video.poster}
+            alt=""
+            fill
+            className="object-cover"
+            placeholder="blur"
+            blurDataURL={placeholderDataUrl("#D8D4CA")}
+            sizes="100vw"
+          />
         )
       )}
     </section>

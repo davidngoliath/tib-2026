@@ -8,6 +8,7 @@ import { MediaBand } from "@/components/MediaBand";
 import { MissionCollage } from "@/components/sections/mission/MissionCollage";
 import { Footer } from "@/components/Footer";
 import type { Video } from "@/content/types";
+import { placeholderDataUrl } from "@/lib/imagePlaceholders";
 import { createPageMetadata, resolveLocale } from "@/lib/seo";
 
 const PAGE_SEO = {
@@ -94,6 +95,8 @@ export default async function OurMission({
             alt=""
             fill
             className="object-cover"
+            placeholder="blur"
+            blurDataURL={placeholderDataUrl("#CCBCB4")}
             sizes="100vw"
           />
         </div>

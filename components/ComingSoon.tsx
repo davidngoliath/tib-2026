@@ -8,12 +8,14 @@ export function ComingSoon({
 }) {
   return (
     <main className={`flex flex-1 flex-col items-center justify-center px-6 py-32 text-center text-black ${className}`}>
-      <p className="text-[48px] font-bold leading-none tracking-[-1.44px] sm:text-[72px] sm:tracking-[-2.16px] lg:text-[96px] lg:tracking-[-2.88px]">
-        COMING
-      </p>
-      <p className="text-[96px] font-bold leading-none tracking-[-2.88px] sm:text-[160px] sm:tracking-[-4.8px] lg:text-[228px] lg:tracking-[-6.84px]">
-        SOON
-      </p>
+      <h1 className="contents">
+        <span className="text-[48px] font-bold leading-none tracking-[-1.44px] sm:text-[72px] sm:tracking-[-2.16px] lg:text-[96px] lg:tracking-[-2.88px]">
+          COMING
+        </span>
+        <span className="text-[96px] font-bold leading-none tracking-[-2.88px] sm:text-[160px] sm:tracking-[-4.8px] lg:text-[228px] lg:tracking-[-6.84px]">
+          SOON
+        </span>
+      </h1>
     </main>
   );
 }

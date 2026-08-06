@@ -1,6 +1,8 @@
 import { Button } from "@/components/Button";
+import { EmailButton } from "@/components/EmailButton";
+import { RegisterButton } from "@/components/RegisterButton";
 import { getCopy } from "@/content/copy";
-import { registration } from "@/content/braveCamp";
+import { contact as siteContact } from "@/content/site";
 
 // Pinned CTA cards at the bottom of For Parents (Figma "Group 84", 669:1267):
 // an inset rounded card (≈1320×634, ~60px side margins) on the cream frame —
@@ -21,6 +23,9 @@ function CtaCard({
   body: string;
   cta: string;
 }) {
+  const isRegisterButton = href === "__register_modal__";
+  const isEmailButton = href.startsWith("mailto:");
+
   return (
     <div className="w-full px-5 sm:px-8 lg:px-[60px]">
       <div
@@ -33,9 +38,17 @@ function CtaCard({
           {body}
         </p>
         <div className="mt-10 lg:mt-12">
-          <Button variant={button} href={href}>
-            {cta}
-          </Button>
+          {isRegisterButton ? (
+            <RegisterButton label={cta} variant={button} />
+          ) : isEmailButton ? (
+            <EmailButton href={href} variant={button}>
+              {cta}
+            </EmailButton>
+          ) : (
+            <Button variant={button} href={href}>
+              {cta}
+            </Button>
+          )}
         </div>
       </div>
     </div>
@@ -49,7 +62,7 @@ export async function ReadyCard() {
     <CtaCard
       bg="bg-brand-green"
       button="darkGreen"
-      href={registration.registerHref}
+      href="__register_modal__"
       title={ready.title}
       body={ready.body}
       cta={ready.cta}
@@ -64,7 +77,7 @@ export async function ContactCard() {
     <CtaCard
       bg="bg-brand-yellow"
       button="darkYellow"
-      href="#" // TODO contact destination (form or mailto)
+      href={siteContact.href}
       title={contact.title}
       body={contact.body}
       cta={contact.cta}

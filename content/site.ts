@@ -15,6 +15,13 @@ export const nav = {
   languages: ["EN", "ES"] as const,
 };
 
+export const contact = {
+  email: "support@todayimbrave.org",
+  href: "mailto:support@todayimbrave.org?subject=Contact%20from%20todayimbrave.org",
+  partnershipHref:
+    "mailto:support@todayimbrave.org?subject=Contact%20from%20todayimbrave.org%20-%20partnership%20inquiry",
+} as const;
+
 export type SocialLink = {
   platform: "facebook" | "instagram" | "youtube";
   href: string;

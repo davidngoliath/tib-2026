@@ -13,6 +13,10 @@ npm install        # first time only
 npm run dev        # dev server → http://localhost:3000 (redirects to /en)
 ```
 
+### Environment
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — production GA4 measurement ID (`G-P0M4ZMVE47` for this site)
+- `GOOGLE_SITE_VERIFICATION` — optional Google Search Console URL-prefix verification token
+
 ### Scripts
 | Command | Purpose |
 |---|---|

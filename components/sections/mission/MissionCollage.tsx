@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { VideoLoop } from "@/components/VideoLoop";
+import { placeholderDataUrl } from "@/lib/imagePlaceholders";
 
 // Our Mission photo collage (Figma 669:1097–1104) — 8 scattered frames placed
 // at their exact coordinates (1440px reference width). Frames with a `video`
@@ -36,7 +37,15 @@ export function MissionCollage() {
             {p.video ? (
               <VideoLoop mp4={p.video} poster={p.src} className="h-full w-full" />
             ) : (
-              <Image src={p.src} alt="" fill className="object-cover" sizes="60vw" />
+              <Image
+                src={p.src}
+                alt=""
+                fill
+                className="object-cover"
+                placeholder="blur"
+                blurDataURL={placeholderDataUrl("#D8C8BC")}
+                sizes="(min-width:1024px) 640px, (min-width:640px) 456px, calc(100vw - 40px)"
+              />
             )}
           </div>
         ))}
@@ -53,7 +62,15 @@ export function MissionCollage() {
             {p.video ? (
               <VideoLoop mp4={p.video} poster={p.src} className="h-full w-full" />
             ) : (
-              <Image src={p.src} alt="" fill className="object-cover" sizes="100vw" />
+              <Image
+                src={p.src}
+                alt=""
+                fill
+                className="object-cover"
+                placeholder="blur"
+                blurDataURL={placeholderDataUrl("#D8C8BC")}
+                sizes="(min-width:640px) 456px, calc(100vw - 40px)"
+              />
             )}
           </div>
         ))}

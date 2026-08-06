@@ -71,7 +71,7 @@ export default async function Page({
         <section className="pb-24">
           <div className="mx-auto flex max-w-[874px] flex-col gap-[25px] px-5 sm:px-8">
             {stories.map((story) => (
-              <StoryCard key={story.name} story={story} variant="cream" />
+              <StoryCard key={story.name} story={story} variant="cream" headingLevel="h2" />
             ))}
           </div>
         </section>

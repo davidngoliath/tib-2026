@@ -2,7 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
+import { RegisterButton } from "./RegisterButton";
 
 // Tablet/mobile nav (<1024px). Collapses the desktop nav into two floating
 // capsules — [logo + hamburger] on the left, [Donate + EN/ES] always-visible on
@@ -25,20 +26,20 @@ export function MobileNav({
   const [open, setOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
-  const pathname = usePathname();
 
-  // Close the menu when the route actually changes. Closing inside the link's
-  // onClick races the navigation (the state update can cancel it), so a tap
-  // would intermittently just dismiss the menu without navigating.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  const closeAfterNavigation = () => {
+    window.setTimeout(() => setOpen(false), 0);
+  };
+
+  const registerClasses =
+    "mt-2 h-16 w-full max-w-[360px] rounded-[16px] px-6 text-2xl";
 
   // Escape to close + body scroll lock + focus trap while the overlay is open.
   useEffect(() => {
     if (!open) return;
 
     const overlay = overlayRef.current;
+    const opener = openerRef.current;
     const focusables = () =>
       Array.from(
         overlay?.querySelectorAll<HTMLElement>(
@@ -74,7 +75,7 @@ export function MobileNav({
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
       // Return focus to the hamburger that opened the menu.
-      openerRef.current?.focus();
+      opener?.focus();
     };
   }, [open]);
 
@@ -114,7 +115,7 @@ export function MobileNav({
         }`}
       >
         <div className="flex items-center justify-between px-[24px] pt-[45px]">
-          <Link href="/" aria-label="Today, I'm Brave — home">
+          <Link href="/" aria-label="Today, I'm Brave — home" onClick={closeAfterNavigation}>
             <img
               src="/images/tib-logo.svg"
               alt="Today, I'm Brave"
@@ -136,18 +137,17 @@ export function MobileNav({
             <Link
               key={link.href}
               href={link.href}
+              onClick={closeAfterNavigation}
               className="flex h-16 w-full max-w-[360px] items-center justify-center rounded-[16px] bg-ink text-2xl font-bold text-paper transition-colors hover:bg-brand-pink hover:text-ink"
             >
               {link.label}
             </Link>
           ))}
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="mt-2 flex h-16 w-full max-w-[360px] items-center justify-center rounded-[16px] bg-brand-yellow px-6 text-2xl font-bold text-ink transition-colors hover:bg-ink hover:text-brand-yellow"
-          >
-            {registerLabel}
-          </button>
+          <RegisterButton
+            label={registerLabel}
+            className={registerClasses}
+            onNavigate={closeAfterNavigation}
+          />
         </nav>
       </div>
     </div>

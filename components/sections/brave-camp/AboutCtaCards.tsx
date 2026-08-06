@@ -1,6 +1,8 @@
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
+import { EmailButton } from "@/components/EmailButton";
 import { getCopy } from "@/content/copy";
+import { contact as siteContact } from "@/content/site";
 
 // About page CTA pair (Figma 669:1143): yellow Parents & Campers card + blue
 // Partner card. Scrolls up over the pinned connect statement, then pins itself
@@ -13,12 +15,14 @@ export async function AboutCtaCards() {
       bg: "bg-brand-yellow",
       button: "darkYellow" as const,
       href: "/brave-camp/for-parents",
+      cta: common.learnMore,
     },
     {
       ...braveCampAbout.ctas.partners,
       bg: "bg-brand-blue",
       button: "darkBlue" as const,
-      href: "#", // TODO partner URL
+      href: siteContact.partnershipHref,
+      cta: "Contact Us",
     },
   ];
 
@@ -38,9 +42,15 @@ export async function AboutCtaCards() {
                 {card.title}
               </h2>
               <div className="mt-auto">
-                <Button variant={card.button} href={card.href}>
-                  {common.learnMore}
-                </Button>
+                {card.href.startsWith("mailto:") ? (
+                  <EmailButton href={card.href} variant={card.button}>
+                    {card.cta}
+                  </EmailButton>
+                ) : (
+                  <Button variant={card.button} href={card.href}>
+                    {card.cta}
+                  </Button>
+                )}
               </div>
             </div>
           ))}

@@ -8,7 +8,7 @@ export function PartnerGrid() {
   return (
     <div className="bg-brand-blue py-[120px]">
       <Container>
-        <div className="grid grid-cols-3 gap-5 sm:grid-cols-4 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {partners.map((partner) => (
             <PartnerLogo key={partner.logo} partner={partner} />
           ))}

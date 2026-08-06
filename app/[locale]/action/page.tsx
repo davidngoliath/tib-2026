@@ -66,7 +66,7 @@ export default async function Page({
           <Container>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {actions.map((item) => (
-                <ActionCard key={item.title} item={item} />
+                <ActionCard key={item.title} item={item} headingLevel="h2" />
               ))}
             </div>
           </Container>

@@ -1,7 +1,8 @@
 import { Container } from "@/components/Container";
-import { Button } from "@/components/Button";
 import { DonateButton } from "@/components/DonateButton";
+import { EmailButton } from "@/components/EmailButton";
 import { getCopy } from "@/content/copy";
+import { contact as siteContact } from "@/content/site";
 
 // Partner/Donate CTA (Figma 669:625) — full-bleed blue, pins centered.
 export async function CtaBand() {
@@ -12,10 +13,10 @@ export async function CtaBand() {
         <p className="mx-auto max-w-3xl text-center text-[clamp(2rem,6vw,56px)] font-bold leading-[1.1]">
           {cta.heading}
         </p>
-        <div className="mt-8 flex justify-center gap-3">
-          <Button variant="darkBlue" href="#">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <EmailButton href={siteContact.partnershipHref} variant="darkBlue">
             {cta.partner}
-          </Button>
+          </EmailButton>
           <DonateButton variant="darkBlue" label={cta.donate} />
         </div>
       </Container>

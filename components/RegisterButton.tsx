@@ -2,23 +2,30 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import Script from "next/script";
+import { registration } from "@/content/braveCamp";
+import { Link } from "@/i18n/navigation";
 import { BASE, VARIANTS, type ButtonVariant } from "./Button";
 
-// Donate pill that opens the Donorbox campaign in a modal (same shell as the
-// WatchNow video modal: backdrop, ✕, Escape, body scroll lock).
-const DONORBOX_EMBED = "https://donorbox.org/embed/brave-camp-2026-donations?";
+function isExternalHref(href: string) {
+  return /^(https?:|mailto:|tel:)/.test(href);
+}
 
-export function DonateButton({
+export function RegisterButton({
   label,
-  variant = "donate",
+  variant = "register",
+  className = "",
+  onNavigate,
 }: {
   label: string;
   variant?: ButtonVariant;
+  className?: string;
+  onNavigate?: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const actionable = registration.isOpen && registration.registerHref !== "#";
+  const cls = `${BASE} ${VARIANTS[variant]} ${className}`;
 
   useEffect(() => {
     if (!open) return;
@@ -28,7 +35,7 @@ export function DonateButton({
     const focusables = () =>
       Array.from(
         dialog?.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])',
+          'button:not([disabled]), [tabindex]:not([tabindex="-1"])',
         ) ?? [],
       );
 
@@ -63,61 +70,70 @@ export function DonateButton({
     };
   }, [open]);
 
+  if (actionable) {
+    if (isExternalHref(registration.registerHref)) {
+      return (
+        <a href={registration.registerHref} onClick={onNavigate} className={cls}>
+          {label}
+        </a>
+      );
+    }
+
+    return (
+      <Link href={registration.registerHref} onClick={onNavigate} className={cls}>
+        {label}
+      </Link>
+    );
+  }
+
   return (
     <>
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className={`${BASE} ${VARIANTS[variant]}`}
+        onClick={() => setOpen(true)}
+        className={cls}
       >
         {label}
       </button>
 
-      {/* Portaled to <body> — the nav capsule's backdrop-blur is a containing
-          block that would otherwise trap this fixed overlay. */}
       {open &&
         createPortal(
           <div
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label={label}
+            aria-label={registration.closedTitle}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-ink/80 p-6"
+            className="fixed inset-0 z-[250] flex items-center justify-center bg-ink/80 p-6"
           >
-            {/* Cream card shell hugging the form's natural 500px width, so the
-                white form body fills it edge-to-edge under a cream title bar —
-                no uneven cream frame around the iframe. */}
             <div
-              className="flex max-h-[90vh] w-full max-w-[430px] flex-col overflow-hidden rounded-card bg-cream"
+              className="flex w-full max-w-[560px] flex-col overflow-hidden rounded-card bg-cream"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between px-5 py-4">
-                <p className="text-[22px] font-bold tracking-[-0.66px]">{label}</p>
+              <div className="flex items-center justify-end px-5 py-4 lg:px-7 lg:py-5">
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  aria-label="Close donation form"
+                  aria-label="Close registration message"
                   className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-ink text-lg font-bold leading-none text-cream transition-colors hover:bg-brand-pink hover:text-ink"
                 >
                   ✕
                 </button>
               </div>
-              {/* widget.js auto-resizes the iframe to the form's height. */}
-              <Script src="https://donorbox.org/widget.js" strategy="lazyOnload" />
-              <div className="flex min-h-0 flex-1 justify-center overflow-y-auto bg-paper">
-                <iframe
-                  src={DONORBOX_EMBED}
-                  name="donorbox"
-                  title={label}
-                  allow="payment"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
-                  className="mx-auto h-[min(780px,72vh)] w-full bg-paper"
-                  scrolling="yes"
-                />
+
+              <div className="px-5 pb-5 pt-1 text-center lg:px-7 lg:pb-7">
+                <p className="mx-auto max-w-[430px] text-[clamp(1.5rem,4.5vw,32px)] font-bold leading-[1.12] tracking-[-0.96px] text-ink">
+                  {registration.closedMessage}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className={`${BASE} ${VARIANTS.register} mt-8 h-12 px-6 text-base`}
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>,

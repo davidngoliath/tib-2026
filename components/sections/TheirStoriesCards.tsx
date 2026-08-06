@@ -8,7 +8,7 @@ export async function TheirStoriesCards() {
   const { common } = await getCopy();
   return (
     <section className="py-24">
-      <div className="mx-auto flex max-w-[874px] flex-col gap-[25px]">
+      <div className="mx-auto flex max-w-[874px] flex-col gap-[25px] px-5 sm:px-8">
         {featuredStories.map((story) => (
           <StoryCard key={story.name} story={story} />
         ))}

@@ -1,7 +1,7 @@
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
+import { RegisterButton } from "@/components/RegisterButton";
 import { getCopy } from "@/content/copy";
-import { registration } from "@/content/braveCamp";
 
 // Registration hero card (Figma 669:1467) — pink, full Container width.
 // Sits over the pinned hero on load, scrolls away as the user scrolls.
@@ -31,9 +31,7 @@ export async function RegistrationCard() {
             ))}
           </div>
           <div className="flex flex-wrap justify-center gap-3 lg:gap-[26px]">
-            <Button variant="darkPink" href={registration.registerHref}>
-              {braveCamp.register}
-            </Button>
+            <RegisterButton label={braveCamp.register} variant="darkPink" />
             <Button variant="darkPink" href="/brave-camp/about">
               {common.learnMore}
             </Button>

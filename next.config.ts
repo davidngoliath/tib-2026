@@ -5,12 +5,12 @@ const isDev = process.env.NODE_ENV === "development";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' https://donorbox.org${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://donorbox.org https://www.googletagmanager.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://www.google-analytics.com",
   "font-src 'self' data:",
   "media-src 'self' blob:",
-  "connect-src 'self' https://donorbox.org https://*.donorbox.org",
+  "connect-src 'self' https://donorbox.org https://*.donorbox.org https://www.google-analytics.com https://region1.google-analytics.com",
   "frame-src 'self' https://donorbox.org https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -20,6 +20,9 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  experimental: {
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {

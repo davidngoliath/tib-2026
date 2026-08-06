@@ -66,6 +66,13 @@ type Dict = {
     ready: { title: string; body: string; cta: string };
     contact: { title: string; body: string; cta: string };
   };
+  notFound: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    home: string;
+    braveCamp: string;
+  };
   common: { watchNow: string; viewAll: string; learnMore: string };
   footer: { tel: string; fax: string; legal: string };
   // Keyed by the (untranslated) proper-noun field in the data arrays.
@@ -171,8 +178,8 @@ export const copy: Record<Locale, Dict> = {
         "Everything you need to know\nabout Brave Camp — from what\ncampers can expect to how\nwe create a safe, supportive, and\nunforgettable experience.",
       scroll: "Scroll to Learn More",
       reg: {
-        title: "Brave Camp 2026 registration\nis now open",
-        body: "Join us for a week of adventure, creativity, connection, and growth designed to help campers step outside their comfort zones, build confidence, and discover what it means to be brave.",
+        title: "Brave Camp 2026 registration\nis now closed",
+        body: "Registration for the 2026 session is currently closed. Explore what campers can expect, and check back for 2027 registration details.",
         chips: { dates: "Aug 16-23, 2026", deposit: "$40 Refundable Deposit", ages: "Ages 8-13" },
       },
       kids: {
@@ -249,6 +256,14 @@ export const copy: Record<Locale, Dict> = {
         body: "Have questions about Brave Camp, registration, or what to expect? We're here to help and happy to connect with parents, campers, and partners.\n\nOur team will respond as soon as possible.",
         cta: "Contact Us",
       },
+    },
+    notFound: {
+      eyebrow: "Oops",
+      title: "Page Not Found",
+      body:
+        "The page you're looking for may have moved, expired, or never existed. Let’s get you back to something brave.",
+      home: "Return Home",
+      braveCamp: "Explore Brave Camp",
     },
     common: { watchNow: "Watch Now", viewAll: "View All", learnMore: "Learn More" },
     footer: {
@@ -372,8 +387,8 @@ export const copy: Record<Locale, Dict> = {
         "Todo lo que necesitas saber\nsobre Brave Camp — desde lo que\nlos campistas pueden esperar hasta cómo\ncreamos una experiencia segura,\nde apoyo e inolvidable.",
       scroll: "Desplázate para saber más",
       reg: {
-        title: "La inscripción para Brave Camp 2026\nya está abierta",
-        body: "Únete a una semana de aventura, creatividad, conexión y crecimiento diseñada para ayudar a los campistas a salir de su zona de confort, desarrollar confianza y descubrir qué significa ser valiente.",
+        title: "La inscripción para Brave Camp 2026\nya está cerrada",
+        body: "La inscripción para la sesión 2026 está cerrada por ahora. Explora lo que les espera a los campistas y vuelve pronto para conocer los detalles de inscripción de 2027.",
         chips: { dates: "16-23 de Ago, 2026", deposit: "Depósito Reembolsable de $40", ages: "Edades 8-13" },
       },
       kids: {
@@ -450,6 +465,14 @@ export const copy: Record<Locale, Dict> = {
         body: "¿Tienes preguntas sobre Brave Camp, la inscripción o qué esperar? Estamos aquí para ayudar y nos encanta conectar con padres, campistas y socios.\n\nNuestro equipo responderá lo antes posible.",
         cta: "Contáctanos",
       },
+    },
+    notFound: {
+      eyebrow: "Ups",
+      title: "Página No Encontrada",
+      body:
+        "La página que buscas puede haberse movido, haber expirado o no haber existido nunca. Volvamos a algo valiente.",
+      home: "Volver al Inicio",
+      braveCamp: "Explorar Brave Camp",
     },
     common: { watchNow: "Ver Ahora", viewAll: "Ver Todo", learnMore: "Más Información" },
     footer: {

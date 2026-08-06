@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
+import { RegisterButton } from "@/components/RegisterButton";
 import { getCopy } from "@/content/copy";
-import { registration } from "@/content/braveCamp";
+import { placeholderDataUrl } from "@/lib/imagePlaceholders";
 
 // Brave Camp registration promo (Figma 669:448). Pins centered. Exact spacing:
 // card 623px, text top-left, image bottom-right (28px insets).
@@ -20,9 +21,7 @@ export async function BraveCampPromo() {
               {braveCamp.body}
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
-              <Button variant="darkGreen" href={registration.registerHref}>
-                {braveCamp.register}
-              </Button>
+              <RegisterButton label={braveCamp.register} variant="darkGreen" />
               <Button variant="darkGreen" href="/brave-camp/about">{braveCamp.learnMore}</Button>
             </div>
           </div>
@@ -32,7 +31,9 @@ export async function BraveCampPromo() {
               alt="Brave Camp"
               fill
               className="object-cover"
-              sizes="653px"
+              placeholder="blur"
+              blurDataURL={placeholderDataUrl("#9AA07A")}
+              sizes="(min-width:1024px) 653px, (min-width:640px) calc(100vw - 64px), calc(100vw - 40px)"
             />
           </div>
         </div>

@@ -45,6 +45,9 @@ export function Button({ variant, children, href, className = "" }: Props) {
         </a>
       );
     }
+    if (/^(mailto:|tel:)/.test(href)) {
+      return <a href={href} className={cls}>{children}</a>;
+    }
     return (
       <Link href={href} className={cls}>
         {children}

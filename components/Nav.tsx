@@ -4,6 +4,7 @@ import { DonateButton } from "./DonateButton";
 import { Logo } from "./Logo";
 import { LanguageToggle } from "./LanguageToggle";
 import { MobileNav } from "./MobileNav";
+import { RegisterButton } from "./RegisterButton";
 
 // Sticky top nav (Figma "nav-block" 669:808). Three translucent capsules:
 // [logo + links] · [Register/Donate] · [EN/ES]. Localized via getCopy().
@@ -23,7 +24,7 @@ export async function Nav() {
   );
 
   return (
-    <header className="sticky top-0 z-50 px-[24px] pt-4 lg:px-[60px] lg:pt-[45px]">
+    <header className="sticky top-0 z-[180] px-[24px] pt-4 lg:px-[60px] lg:pt-[45px]">
       {/* Desktop (≥1024px): full nav — logo + links · Register/Donate · EN/ES. */}
       <nav className="mx-auto hidden max-w-[1320px] items-center lg:flex">
         {/* Logo + nav links */}
@@ -43,9 +44,7 @@ export async function Nav() {
         {/* Right cluster: Register/Donate + language toggle */}
         <div className="ml-auto flex items-center gap-[18px]">
           <div className={CAPSULE}>
-            <Button variant="register" href="#">
-              {t.nav.register}
-            </Button>
+            <RegisterButton label={t.nav.register} />
             <DonateButton variant="donate" label={t.nav.donate} />
           </div>
 

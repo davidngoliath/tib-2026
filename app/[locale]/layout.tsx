@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { defaultOgImage, getAbsoluteUrl, getLocaleAlternates, getLocalizedPath, siteUrl } from "@/lib/seo";
 import "../globals.css";
 import { Nav } from "@/components/Nav";
+import { ArrowKeyScroll } from "@/components/ArrowKeyScroll";
 
 // Helvetica Neue LT Pro — licensed webfont, self-hosted.
 const helvetica = localFont({
@@ -24,6 +26,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
   const { locale } = await params;
   const currentLocale = routing.locales.includes(locale as "en" | "es")
     ? (locale as "en" | "es")
@@ -47,6 +50,11 @@ export async function generateMetadata({
       index: true,
       follow: true,
     },
+    verification: googleSiteVerification
+      ? {
+          google: googleSiteVerification,
+        }
+      : undefined,
     openGraph: {
       title: "Today, I'm Brave",
       description:
@@ -83,6 +91,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const { locale } = await params;
   if (!routing.locales.includes(locale as "en" | "es")) notFound();
   setRequestLocale(locale);
@@ -91,10 +100,12 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${helvetica.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
+          <ArrowKeyScroll />
           <Nav />
           {children}
         </NextIntlClientProvider>
       </body>
+      {process.env.NODE_ENV === "production" && gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
