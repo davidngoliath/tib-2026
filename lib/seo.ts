@@ -69,13 +69,14 @@ export function createPageMetadata({
 }): Metadata {
   const localizedPath = getLocalizedPath(locale, pathname);
   const canonical = getAbsoluteUrl(localizedPath);
+  const fullTitle = `Today, I'm Brave - ${title}`;
   const openGraphImage = {
     url: getAbsoluteUrl(imagePath),
     alt: imageAlt,
   };
 
   return {
-    title,
+    title: fullTitle,
     description,
     alternates: {
       canonical,
@@ -83,7 +84,7 @@ export function createPageMetadata({
     },
     robots: noIndex ? { index: false, follow: false } : undefined,
     openGraph: {
-      title,
+      title: fullTitle,
       description,
       url: canonical,
       siteName: "Today, I'm Brave",
@@ -93,7 +94,7 @@ export function createPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [openGraphImage.url],
     },

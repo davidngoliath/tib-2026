@@ -73,7 +73,7 @@ type Dict = {
     home: string;
     braveCamp: string;
   };
-  common: { watchNow: string; viewAll: string; learnMore: string };
+  common: { watchNow: string; viewAll: string; learnMore: string; coming: string; soon: string };
   footer: { tel: string; fax: string; legal: string };
   // Keyed by the (untranslated) proper-noun field in the data arrays.
   storyRoles: Record<string, string>;
@@ -265,7 +265,13 @@ export const copy: Record<Locale, Dict> = {
       home: "Return Home",
       braveCamp: "Explore Brave Camp",
     },
-    common: { watchNow: "Watch Now", viewAll: "View All", learnMore: "Learn More" },
+    common: {
+      watchNow: "Watch Now",
+      viewAll: "View All",
+      learnMore: "Learn More",
+      coming: "COMING",
+      soon: "SOON",
+    },
     footer: {
       tel: "Tel",
       fax: "Fax",
@@ -474,7 +480,13 @@ export const copy: Record<Locale, Dict> = {
       home: "Volver al Inicio",
       braveCamp: "Explorar Brave Camp",
     },
-    common: { watchNow: "Ver Ahora", viewAll: "Ver Todo", learnMore: "Más Información" },
+    common: {
+      watchNow: "Ver Ahora",
+      viewAll: "Ver Todo",
+      learnMore: "Más Información",
+      coming: "PRÓXIMAMENTE",
+      soon: "",
+    },
     footer: {
       tel: "Tel",
       fax: "Fax",

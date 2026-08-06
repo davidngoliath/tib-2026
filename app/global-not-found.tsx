@@ -20,7 +20,7 @@ const helvetica = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "404 | Today, I'm Brave",
+  title: "Today, I'm Brave - 404",
   description: "The page you are looking for could not be found.",
 };
 

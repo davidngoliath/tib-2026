@@ -38,7 +38,6 @@ export async function generateMetadata({
     metadataBase: siteUrl,
     title: {
       default: "Today, I'm Brave",
-      template: "%s | Today, I'm Brave",
     },
     description:
       "Today, I'm Brave is a global non-profit dedicated to unlocking bravery in today's youth.",
