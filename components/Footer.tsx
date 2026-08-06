@@ -14,7 +14,7 @@ export async function Footer() {
   return (
     <footer className="relative flex min-h-screen flex-col items-center justify-center gap-8 bg-brand-pink px-6 py-24 text-center text-ink sm:px-[60px]">
       <img
-        src="/images/tib-logo-blk.svg"
+        src="/images/tib-logo-footer.svg"
         alt="Today, I'm Brave"
         className="h-12 w-auto"
       />

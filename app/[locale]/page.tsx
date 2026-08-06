@@ -71,7 +71,7 @@ export default async function Home({
     <main className="flex-1">
       {/* Scroll-stack: each layer pins, the next scrolls up and covers it. */}
       <HomeHero />
-      <div className="relative z-10 [timeline-scope:--lion]">
+      <div className="relative z-10">
         {/* Brave camp green card — rises over hero, snaps center, then holds */}
         <BraveCampPromo />
         <div className="h-screen" aria-hidden />
@@ -83,10 +83,10 @@ export default async function Home({
           <img
             src="/images/home/lion-sticker.svg"
             alt=""
-            className="lion-sticker absolute bottom-[200px] right-[70px] w-36"
+            className="absolute bottom-[200px] right-[70px] w-36"
           />
         </div>
-        <div className="lion-track h-[120vh]" aria-hidden />
+        <div className="h-[120vh]" aria-hidden />
 
         {/* OUR ACTION header — rises over the image, pins centered, then holds */}
         <OurActionHeader />

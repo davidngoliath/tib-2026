@@ -44,32 +44,3 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
 }
-
-/* Lion sticker: rides with the pinned video band (parked bottom-right) and
-   slides in as the band's hold region scrolls, then holds until covered. */
-@keyframes lion-slide {
-  from {
-    opacity: 0;
-    transform: translateY(160px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.lion-track {
-  view-timeline-name: --lion;
-  view-timeline-axis: block;
-}
-.lion-sticker {
-  animation: lion-slide both;
-  animation-timeline: --lion;
-  /* Delay: video settles first (0–20%), then the sticker slides in (20–50%). */
-  animation-range: entry 20% entry 50%;
-}
-@supports not (animation-timeline: view()) {
-  .lion-sticker {
-    animation: none;
-    opacity: 1;
-  }
-}

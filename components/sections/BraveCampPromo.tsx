@@ -1,9 +1,8 @@
-import Image from "next/image";
 import { Container } from "@/components/Container";
 import { Button } from "@/components/Button";
 import { RegisterButton } from "@/components/RegisterButton";
+import { VideoLoop } from "@/components/VideoLoop";
 import { getCopy } from "@/content/copy";
-import { placeholderDataUrl } from "@/lib/imagePlaceholders";
 
 // Brave Camp registration promo (Figma 669:448). Pins centered. Exact spacing:
 // card 623px, text top-left, image bottom-right (28px insets).
@@ -26,14 +25,10 @@ export async function BraveCampPromo() {
             </div>
           </div>
           <div className="relative aspect-[653/437] w-full shrink-0 self-end overflow-hidden rounded-media bg-ink/10 lg:w-[653px]">
-            <Image
-              src="/images/home/brave-camp-promo.jpg"
-              alt="Brave Camp"
-              fill
-              className="object-cover"
-              placeholder="blur"
-              blurDataURL={placeholderDataUrl("#9AA07A")}
-              sizes="(min-width:1024px) 653px, (min-width:640px) calc(100vw - 64px), calc(100vw - 40px)"
+            <VideoLoop
+              mp4="/video/brave-camp-promo.mp4"
+              poster="/images/home/brave-camp-promo.jpg"
+              className="h-full w-full"
             />
           </div>
         </div>
