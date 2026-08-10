@@ -64,6 +64,9 @@ export async function generateMetadata({
         {
           url: getAbsoluteUrl(defaultOgImage.path),
           alt: defaultOgImage.alt,
+          width: defaultOgImage.width,
+          height: defaultOgImage.height,
+          type: defaultOgImage.type,
         },
       ],
     },

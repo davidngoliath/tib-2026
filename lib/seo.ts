@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { routing, type Locale } from "@/i18n/routing";
 
-const FALLBACK_SITE_URL = "https://todayimbrave.org";
+const FALLBACK_SITE_URL = "https://tib-2026.vercel.app";
 const DEFAULT_OG_IMAGE_PATH = "/images/home/youth-portrait.jpg";
 
 export const indexablePaths = [
@@ -14,13 +14,27 @@ export const indexablePaths = [
   "/stories",
 ] as const;
 
-export const siteUrl = new URL(
-  process.env.NEXT_PUBLIC_SITE_URL ?? FALLBACK_SITE_URL,
-);
+function normalizeSiteUrl(value?: string) {
+  if (!value) return null;
+  return value.startsWith("http://") || value.startsWith("https://")
+    ? value
+    : `https://${value}`;
+}
+
+const resolvedSiteUrl =
+  normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
+  normalizeSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
+  normalizeSiteUrl(process.env.VERCEL_URL) ??
+  FALLBACK_SITE_URL;
+
+export const siteUrl = new URL(resolvedSiteUrl);
 
 export const defaultOgImage = {
   path: DEFAULT_OG_IMAGE_PATH,
   alt: "Today, I'm Brave",
+  width: 1440,
+  height: 1023,
+  type: "image/jpeg",
 } as const;
 
 function normalizePathname(pathname: string) {
@@ -73,6 +87,9 @@ export function createPageMetadata({
   const openGraphImage = {
     url: getAbsoluteUrl(imagePath),
     alt: imageAlt,
+    width: defaultOgImage.width,
+    height: defaultOgImage.height,
+    type: defaultOgImage.type,
   };
 
   return {
