@@ -24,7 +24,7 @@ Shared primitives reused across pages:
 | # | Section | Component | Node | Notes |
 |---|---|---|---|---|
 | 1 | Nav | `<Nav>` | 669:808 | sticky; color-invert hover links |
-| 2 | Hero | `<HomeHero>` | 669:430 | logo, headline, animated "global non-profit" highlight, scroll indicator |
+| 2 | Hero | `<HomeHero>` | 669:430 | logo, headline, animated "global nonprofit" highlight, scroll indicator |
 | 3 | Brave Camp registration | `<BraveCampPromo>` | 669:447 | green card, dates, 2× Watch Now, image |
 | 4 | Media band #1 | `<MediaBand>` | 669:457 | gif + lion sticker |
 | 5 | Our Action | `<OurAction>` | 669:583 + 701 | eyebrow+title+subhead, 6× `<ActionCard>`, View All |

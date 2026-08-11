@@ -1,6 +1,6 @@
 # Today, I'm Brave — Website
 
-Marketing site for the non-profit **Today, I'm Brave**, rebuilt from Figma
+Marketing site for the nonprofit **Today, I'm Brave**, rebuilt from Figma
 ("20260601 - Production Ready"). Desktop-first, bilingual (EN/ES), with a
 scroll-driven "sticky-stack" experience.
 

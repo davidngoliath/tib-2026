@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 
 // An underlined hero phrase that reveals image(s) on hover and shifts color
-// (Figma hero hover state: "global non-profit" → blue + globe; "challenges" →
+// (Figma hero hover state: "global nonprofit" → blue + globe; "challenges" →
 // yellow + photos). Pure CSS group-hover. Full motion is the later anim pass.
 type Reveal = { src: string; alt: string; className: string };
 

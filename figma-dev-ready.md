@@ -221,7 +221,7 @@ Every interactive control swaps to **black + its brand color** on hover:
 | Donate | blue bg / black text | black bg / blue text |
 | Nav link (`Hero Navigation Button`) | black bg / white text | pink bg / black text |
 | `Today, I'm Brave` logo | static (`Default`) | `Play` variant — animated/video play state |
-| "global non-profit" inline word | black + underline + globe | light-blue text (`Variant2`) — animated emphasis |
+| "global nonprofit" inline word | black + underline + globe | light-blue text (`Variant2`) — animated emphasis |
 
 Implement as one shared hover rule per button (invert fill ↔ text to black + brand color).
 Variant components carrying these states: Registration `669:958`, Donate `669:965`,

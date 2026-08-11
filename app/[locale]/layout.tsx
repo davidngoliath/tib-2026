@@ -38,7 +38,7 @@ export async function generateMetadata({
     metadataBase: siteUrl,
     title: "Today, I'm Brave",
     description:
-      "Today, I'm Brave is a global non-profit dedicated to unlocking bravery in today's youth.",
+      "Today, I'm Brave is a global nonprofit dedicated to unlocking bravery in today's youth.",
     alternates: {
       canonical,
       languages: getLocaleAlternates(),
@@ -55,7 +55,7 @@ export async function generateMetadata({
     openGraph: {
       title: "Today, I'm Brave",
       description:
-        "Today, I'm Brave is a global non-profit dedicated to unlocking bravery in today's youth.",
+        "Today, I'm Brave is a global nonprofit dedicated to unlocking bravery in today's youth.",
       url: canonical,
       siteName: "Today, I'm Brave",
       locale: currentLocale,
@@ -74,7 +74,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: "Today, I'm Brave",
       description:
-        "Today, I'm Brave is a global non-profit dedicated to unlocking bravery in today's youth.",
+        "Today, I'm Brave is a global nonprofit dedicated to unlocking bravery in today's youth.",
       images: [getAbsoluteUrl(defaultOgImage.path)],
     },
   };

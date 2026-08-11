@@ -94,7 +94,7 @@ export const copy: Record<Locale, Dict> = {
     },
     hero: {
       line1: " is a ",
-      emphasis1: "global non-profit",
+      emphasis1: "global nonprofit",
       line2:
         " dedicated to unlocking bravery in today's youth, so they can take on the ",
       emphasis2: "challenges",
@@ -103,7 +103,7 @@ export const copy: Record<Locale, Dict> = {
     },
     braveCamp: {
       title: "Brave Camp\nReturns\nAug. 16 - 23 2026",
-      body: "Brave Camp is a weeklong, customized camp experience that gets campers outside of their comfort zone, take part in something new while making new friends, and be inspired by Mother Nature!",
+      body: "Brave Camp is a weeklong, customized camp experience that gets campers outside of their comfort zones, helps them take part in something new, make new friends, and be inspired by Mother Nature.",
       register: "Register Today",
       learnMore: "Learn More",
     },
@@ -118,7 +118,7 @@ export const copy: Record<Locale, Dict> = {
     partners: { title: "Partners" },
     cta: {
       heading:
-        "Bravery isn't just a message—it's a movement. Partner with us or give today to help expand its reach and impact.",
+        "Bravery isn't just a message. It's a movement. Partner with us or give today to help expand its reach and impact.",
       partner: "Partner",
       donate: "Donate",
     },
@@ -130,8 +130,8 @@ export const copy: Record<Locale, Dict> = {
       story: [
         "Our very first act was to send a simple but empowering message to 300 children in Sierra Leone who were left without hope or a school to go to in the wake of the Ebola crisis. What transpired after receiving our message of bravery was beyond anything we ever expected. Not only were the children uplifted by what we sent them, but the entire community was inspired. People's lives were changed and fear was replaced with strength.",
         "The realization that we could have that kind of effect on people 7000 miles away is what then inspired us to turn our brave message into a global movement that continues to grow every day.",
-        "It's also what inspires us to continually seek out and create new initiatives and partnerships that benefit the greater good. Everything from our 100Roofs Project which put 100 roofs back over the heads of hurricane victims in Puerto Rico, to our ongoing Brave Speaker Series and Educational Workshops, to our Serving Support Project supporting essential workers fighting COVID-19, and to the Brave stories we share from people around the world, is done with the sole purpose of helping others overcome their greatest challenges— no matter how big or small.",
-        "Because we believe that in the face of adversity, especially these days, that there's an opportunity for us to band together, to cross borders and overcome our differences so that we can make the world a better, braver place.",
+        "It's also what inspires us to continually seek out and create new initiatives and partnerships that benefit the greater good. Everything from our 100Roofs Project, which put 100 roofs back over the heads of hurricane victims in Puerto Rico, to our ongoing Brave Speaker Series and Educational Workshops, to our Serving Support Project supporting essential workers fighting COVID-19, and to the Brave stories we share from people around the world, is done with the sole purpose of helping others overcome their greatest challenges— no matter how big or small.",
+        "Because we believe that in the face of adversity, especially these days, there's an opportunity for us to band together, to cross borders and overcome our differences so that we can make the world a better, braver place.",
       ],
     },
     braveCampTabs: { about: "About Brave Camp", forParents: "For Parents and Campers" },
