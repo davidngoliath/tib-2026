@@ -118,7 +118,7 @@ export const copy: Record<Locale, Dict> = {
     partners: { title: "Partners" },
     cta: {
       heading:
-        "Bravery isn't just a message. It's a movement. Partner with us or give today to help expand its reach and impact.",
+        "Bravery isn't just a message.\nIt's a movement. Partner with us\nor give today to help expand\nits reach and impact.",
       partner: "Partner",
       donate: "Donate",
     },

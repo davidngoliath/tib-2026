@@ -2,6 +2,12 @@
 
 import { useEffect } from "react";
 
+const SCROLL_DURATION_MS = 320;
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
 // Site-wide "next/previous section" paging: ↓ advances one viewport height,
 // ↑ goes back one. Sections/holds in the sticky-stack are ~100vh each, so a
 // single viewport-height jump lines up with the scroll choreography without
@@ -10,6 +16,9 @@ import { useEffect } from "react";
 // mobile menu) is left alone so it doesn't hijack normal scrolling there.
 export function ArrowKeyScroll() {
   useEffect(() => {
+    let animationFrameId: number | null = null;
+    let isAnimating = false;
+
     function isTextInput(el: Element | null) {
       if (!el) return false;
       const tag = el.tagName;
@@ -43,6 +52,44 @@ export function ArrowKeyScroll() {
       });
     }
 
+    function animateScrollBy(distance: number) {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
+
+      isAnimating = true;
+      const startY = window.scrollY;
+      const maxY = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+      const targetY = Math.min(Math.max(startY + distance, 0), maxY);
+      const totalDistance = targetY - startY;
+
+      if (totalDistance === 0) {
+        isAnimating = false;
+        animationFrameId = null;
+        return;
+      }
+
+      const startTime = performance.now();
+
+      const step = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / SCROLL_DURATION_MS, 1);
+        const easedProgress = easeOutCubic(progress);
+
+        window.scrollTo({ top: startY + totalDistance * easedProgress, behavior: "auto" });
+
+        if (progress < 1) {
+          animationFrameId = requestAnimationFrame(step);
+          return;
+        }
+
+        isAnimating = false;
+        animationFrameId = null;
+      };
+
+      animationFrameId = requestAnimationFrame(step);
+    }
+
     function onKeyDown(e: KeyboardEvent) {
       if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
       if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
@@ -50,14 +97,20 @@ export function ArrowKeyScroll() {
       if (isTextInput(document.activeElement)) return;
       if (isInteractiveElement(document.activeElement)) return;
       if (isDialogOpen()) return;
+      if (isAnimating) return;
 
       e.preventDefault();
       const direction = e.key === "ArrowDown" ? 1 : -1;
-      window.scrollBy({ top: direction * window.innerHeight, behavior: "smooth" });
+      animateScrollBy(direction * window.innerHeight);
     }
 
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   return null;
