@@ -39,8 +39,6 @@ export async function Footer() {
 
       <p className="text-body font-bold">
         {t.footer.tel} <span className="underline">{footer.phone}</span>
-        <span className="mx-3">|</span>
-        {t.footer.fax} <span className="underline">{footer.fax}</span>
       </p>
 
       <img src={footer.badge} alt="CSQ award" className="h-[91px] w-auto" />

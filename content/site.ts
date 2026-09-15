@@ -31,7 +31,6 @@ export type SocialLink = {
 export const footer = {
   // Confirmed from design (Group 86):
   phone: "310 445 5200",
-  fax: "310 445 5201",
   address: "909 N. Pacific Coast Highway, Ste. 700 El Segundo, California 90245",
   legal:
     "Today, I'm Brave® is a registered 501(c)(3) nonprofit organization | Tax ID number: 81-4843811  Contributions to Today, I'm Brave are tax-deductible to the extent permitted by law. CFC #10715.",

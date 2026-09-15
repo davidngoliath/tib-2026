@@ -74,7 +74,7 @@ type Dict = {
     braveCamp: string;
   };
   common: { watchNow: string; viewAll: string; learnMore: string; coming: string; soon: string };
-  footer: { tel: string; fax: string; legal: string };
+  footer: { tel: string; legal: string };
   // Keyed by the (untranslated) proper-noun field in the data arrays.
   storyRoles: Record<string, string>;
   pressBlurbs: Record<string, string>;
@@ -274,7 +274,6 @@ export const copy: Record<Locale, Dict> = {
     },
     footer: {
       tel: "Tel",
-      fax: "Fax",
       legal:
         "Today, I'm Brave® is a registered 501(c)(3) nonprofit organization | Tax ID number: 81-4843811  Contributions to Today, I'm Brave are tax-deductible to the extent permitted by law. CFC #10715.",
     },
@@ -489,7 +488,6 @@ export const copy: Record<Locale, Dict> = {
     },
     footer: {
       tel: "Tel",
-      fax: "Fax",
       legal:
         "Today, I'm Brave® es una organización sin fines de lucro registrada 501(c)(3) | Número de identificación fiscal: 81-4843811  Las contribuciones a Today, I'm Brave son deducibles de impuestos en la medida permitida por la ley. CFC #10715.",
     },
