@@ -41,7 +41,7 @@ Pages that do not set a custom `imagePath` use this default image:
 - Home / default: [public/images/home/youth-portrait.jpg](public/images/home/youth-portrait.jpg)
 - Our Action: [public/images/action/project-angel-food.jpg](public/images/action/project-angel-food.jpg)
 - Our Mission: [public/images/mission/media-band.jpg](public/images/mission/media-band.jpg)
-- Their Stories: [public/images/stories/ron-finley.jpg](public/images/stories/ron-finley.jpg)
+- Brave Mentors: [public/images/stories/ron-finley.jpg](public/images/stories/ron-finley.jpg)
 - Press: [public/images/press/nbc.jpg](public/images/press/nbc.jpg)
 - Brave Camp About: [public/images/brave-camp/brave-camp-06-poster.jpg](public/images/brave-camp/brave-camp-06-poster.jpg)
 - Brave Camp For Parents: [public/images/brave-camp/brave-camp-07-poster.jpg](public/images/brave-camp/brave-camp-07-poster.jpg)

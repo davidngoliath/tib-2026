@@ -15,12 +15,12 @@ const PAGE_SEO = {
   en: {
     title: "Our Mission",
     description:
-      "Learn how Today, I'm Brave helps people build courage through programs, community, and stories that inspire action.",
+      "Learn how Today, I'm Brave helps people build courage through mentorship, programs, and community.",
   },
   es: {
     title: "Nuestra misión",
     description:
-      "Conoce cómo Today, I'm Brave ayuda a las personas a desarrollar valentía a través de programas, comunidad e historias que inspiran acción.",
+      "Conoce cómo Today, I'm Brave ayuda a las personas a desarrollar valentía mediante mentoría, programas y comunidad.",
   },
 } as const;
 

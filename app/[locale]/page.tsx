@@ -20,12 +20,12 @@ const PAGE_SEO = {
   en: {
     title: "Unlocking Bravery in Today's Youth",
     description:
-      "Today, I'm Brave is a global nonprofit helping young people build courage through camps, community, and stories.",
+      "Today, I'm Brave is a global nonprofit helping young people build courage through mentorship, camps, and community.",
   },
   es: {
     title: "Desbloqueando la valentía en la juventud de hoy",
     description:
-      "Today, I'm Brave es una organización sin fines de lucro global que ayuda a jóvenes a desarrollar valentía a través de campamentos, comunidad e historias.",
+      "Today, I'm Brave es una organización sin fines de lucro global que ayuda a los jóvenes a desarrollar valentía mediante mentoría, campamentos y comunidad.",
   },
 } as const;
 

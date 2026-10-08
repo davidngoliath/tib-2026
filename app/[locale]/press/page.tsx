@@ -11,12 +11,12 @@ const PAGE_SEO = {
   en: {
     title: "Press",
     description:
-      "Read press coverage featuring Today, I'm Brave, Brave Camp, and stories about our work supporting youth bravery and impact.",
+      "Read press coverage about Today, I'm Brave, Brave Camp, and our mentorship work helping young people grow in confidence and courage.",
   },
   es: {
     title: "Prensa",
     description:
-      "Lee la cobertura de prensa sobre Today, I'm Brave, Brave Camp y nuestro trabajo apoyando la valentía y el impacto en la juventud.",
+      "Lee la cobertura de prensa sobre Today, I'm Brave, Brave Camp y nuestro trabajo de mentoría para ayudar a los jóvenes a crecer con confianza y valentía.",
   },
 } as const;
 
