@@ -5,6 +5,7 @@ test.describe("launch smoke", () => {
     await page.goto("/");
 
     await expect(page).toHaveURL(/\/en$/);
+    await expect(page.getByRole("heading", { name: "Mentors" })).toBeVisible();
     await expect(page.getByText("Keep Scrolling")).toBeVisible();
     await expect(
       page.locator('script[src*="googletagmanager.com/gtag/js?id=G-P0M4ZMVE47"]'),
@@ -18,6 +19,29 @@ test.describe("launch smoke", () => {
 
     await expect(page).toHaveURL(/\/es$/);
     await expect(page.getByText("Sigue desplazándote")).toBeVisible();
+  });
+
+  test("redirects the legacy stories route to Brave Mentors", async ({ page }) => {
+    const redirect = await page.request.get("/en/stories", { maxRedirects: 0 });
+
+    expect(redirect.status()).toBe(308);
+    expect(redirect.headers().location).toBe("/en/brave-mentors");
+
+    await page.goto("/en/stories");
+    await expect(page).toHaveURL(/\/en\/brave-mentors$/);
+    await expect(page.getByRole("heading", { name: "Mentors" })).toBeVisible();
+    await expect(
+      page.getByText(
+        "Empowering the next generation through mentorship, guidance, and encouragement. Helping young people build confidence, overcome challenges, and discover their own bravery.",
+      ),
+    ).toBeVisible();
+
+    const spanishRedirect = await page.request.get("/es/stories", { maxRedirects: 0 });
+    expect(spanishRedirect.status()).toBe(308);
+    expect(spanishRedirect.headers().location).toBe("/es/brave-mentors");
+
+    await page.goto("/es/brave-mentors");
+    await expect(page.getByRole("heading", { name: "Valientes" })).toBeVisible();
   });
 
   test("opens and closes the registration modal", async ({ page }) => {

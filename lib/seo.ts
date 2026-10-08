@@ -11,7 +11,7 @@ export const indexablePaths = [
   "/press",
   "/brave-camp/about",
   "/brave-camp/for-parents",
-  "/stories",
+  "/brave-mentors",
 ] as const;
 
 function normalizeSiteUrl(value?: string) {

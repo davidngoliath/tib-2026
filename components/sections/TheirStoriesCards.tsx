@@ -14,7 +14,7 @@ export async function TheirStoriesCards() {
         ))}
       </div>
       <div className="mt-12 flex justify-center">
-        <Button variant="dark" href="/stories">
+        <Button variant="dark" href="/brave-mentors">
           {common.viewAll}
         </Button>
       </div>

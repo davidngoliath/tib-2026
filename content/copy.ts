@@ -113,7 +113,7 @@ export const copy: Record<Locale, Dict> = {
       subhead:
         "Real initiatives that turn courage into impact.\nFrom local communities to global relief, action drives change.",
     },
-    theStories: { eyebrow: "The", title: "Stories" },
+    theStories: { eyebrow: "Brave", title: "Mentors" },
     press: { title: "Press" },
     partners: { title: "Partners" },
     cta: {
@@ -327,7 +327,7 @@ export const copy: Record<Locale, Dict> = {
       subhead:
         "Iniciativas reales que convierten el coraje en impacto.\nDe las comunidades locales al alivio global, la acción genera cambio.",
     },
-    theStories: { eyebrow: "Las", title: "Historias" },
+    theStories: { eyebrow: "Mentores", title: "Valientes" },
     press: { title: "Prensa" },
     partners: { title: "Socios" },
     cta: {
